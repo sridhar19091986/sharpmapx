@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9924F9BF-24A6-4C73-AB60-FAEE784F4327}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GeoAPI</RootNamespace>
+    <AssemblyName>GeoAPI.WindowsPhone</AssemblyName>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <SilverlightVersion>
+    </SilverlightVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>geoapi.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>$(SolutionDir)$(Configuration)\WP\$(Platform)\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>$(SolutionDir)$(Configuration)\WP\$(Platform)\</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget />
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>WINDOWS_PHONE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget />
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <PlatformTarget />
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>WINDOWS_PHONE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <PlatformTarget />
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="CoordinateSystems\TransformType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CoordinateSystems\AxisInfo.cs" />
+    <Compile Include="CoordinateSystems\AxisOrientationEnum.cs" />
+    <Compile Include="CoordinateSystems\DatumType.cs" />
+    <Compile Include="CoordinateSystems\IAngularUnit.cs" />
+    <Compile Include="CoordinateSystems\ICompoundCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystemAuthorityFactory.cs" />
+    <Compile Include="CoordinateSystems\ICoordinateSystemFactory.cs" />
+    <Compile Include="CoordinateSystems\IDatum.cs" />
+    <Compile Include="CoordinateSystems\IEllipsoid.cs" />
+    <Compile Include="CoordinateSystems\IFittedCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeocentricCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeodeticSpatialReference.cs" />
+    <Compile Include="CoordinateSystems\IGeographicCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IGeographicTransform.cs" />
+    <Compile Include="CoordinateSystems\IHorizontalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IHorizontalDatum.cs" />
+    <Compile Include="CoordinateSystems\IInfo.cs" />
+    <Compile Include="CoordinateSystems\ILinearUnit.cs" />
+    <Compile Include="CoordinateSystems\ILocalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\ILocalDatum.cs" />
+    <Compile Include="CoordinateSystems\IParameterInfo.cs" />
+    <Compile Include="CoordinateSystems\IPrimeMeridian.cs" />
+    <Compile Include="CoordinateSystems\IProjectedCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IProjection.cs" />
+    <Compile Include="CoordinateSystems\IUnit.cs" />
+    <Compile Include="CoordinateSystems\IVerticalCoordinateSystem.cs" />
+    <Compile Include="CoordinateSystems\IVerticalDatum.cs" />
+    <Compile Include="CoordinateSystems\Parameter.cs" />
+    <Compile Include="CoordinateSystems\ProjectionParameter.cs" />
+    <Compile Include="CoordinateSystems\Transformations\DomainFlags.cs" />
+    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformation.cs" />
+    <Compile Include="CoordinateSystems\Transformations\ICoordinateTransformationFactory.cs" />
+    <Compile Include="CoordinateSystems\Transformations\IMathTransform.cs" />
+    <Compile Include="CoordinateSystems\Transformations\IMathTransformFactory.cs" />
+    <Compile Include="CoordinateSystems\WGS84ConversionInfo.cs" />
+    <Compile Include="DataStructures\Interval.cs" />
+    <Compile Include="FrameworkReplacements\BitConverterEx.cs" />
+    <Compile Include="FrameworkReplacements\ICloneable.cs" />
+    <Compile Include="FrameworkReplacements\SerializableAttribute.cs" />
+    <Compile Include="Geometries\Coordinate.cs" />
+    <Compile Include="Geometries\Dimension.cs" />
+    <Compile Include="Geometries\Envelope.cs" />
+    <Compile Include="Geometries\IBoundable.cs" />
+    <Compile Include="Geometries\ICoordinate.cs" />
+    <Compile Include="Geometries\ICoordinateBuffer.cs" />
+    <Compile Include="Geometries\ICoordinateFilter.cs" />
+    <Compile Include="Geometries\ICoordinateSequence.cs" />
+    <Compile Include="Geometries\ICoordinateSequenceFactory.cs" />
+    <Compile Include="Geometries\ICoordinateSequenceFilter.cs" />
+    <Compile Include="Geometries\ICurve.cs" />
+    <Compile Include="Geometries\IEnvelope.cs" />
+    <Compile Include="Geometries\IExpandable.cs" />
+    <Compile Include="Geometries\IGeometry.cs" />
+    <Compile Include="Geometries\IGeometryCollection.cs" />
+    <Compile Include="Geometries\IGeometryComponentFilter.cs" />
+    <Compile Include="Geometries\IGeometryFactory.cs" />
+    <Compile Include="Geometries\IGeometryFilter.cs" />
+    <Compile Include="Geometries\IIntersectable.cs" />
+    <Compile Include="Geometries\ILineal.cs" />
+    <Compile Include="Geometries\ILinearRing.cs" />
+    <Compile Include="Geometries\ILineString.cs" />
+    <Compile Include="Geometries\IMultiCurve.cs" />
+    <Compile Include="Geometries\IMultiLineString.cs" />
+    <Compile Include="Geometries\IMultiPoint.cs" />
+    <Compile Include="Geometries\IMultiPolygon.cs" />
+    <Compile Include="Geometries\IMultiSurface.cs" />
+    <Compile Include="Geometries\IntersectionMatrix.cs" />
+    <Compile Include="Geometries\IPoint.cs" />
+    <Compile Include="Geometries\IPolygon.cs" />
+    <Compile Include="Geometries\IPolygonal.cs" />
+    <Compile Include="Geometries\IPrecisionModel.cs" />
+    <Compile Include="Geometries\IPuntal.cs" />
+    <Compile Include="Geometries\ISurface.cs" />
+    <Compile Include="Geometries\Location.cs" />
+    <Compile Include="Geometries\OgcGeometryType.cs" />
+    <Compile Include="Geometries\Ordinate.cs" />
+    <Compile Include="Geometries\Ordinates.cs" />
+    <Compile Include="Geometries\OridinatesUtility.cs" />
+    <Compile Include="Geometries\Prepared\IPreparedGeometry.cs" />
+    <Compile Include="GeometryServiceProvider.cs" />
+    <Compile Include="IGeometryServices.cs" />
+    <Compile Include="IO\ByteOrder.cs" />
+    <Compile Include="IO\GeometryType.cs" />
+    <Compile Include="IO\IGeometryReader.cs" />
+    <Compile Include="IO\IGeometryWriter.cs" />
+    <Compile Include="IO\ParseException.cs" />
+    <Compile Include="Operation\Buffer\BufferStyle.cs" />
+    <Compile Include="Operation\Buffer\EndCapStyle.cs" />
+    <Compile Include="Operation\Buffer\IBufferParameters.cs" />
+    <Compile Include="Operation\Buffer\JoinStyle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CoordinateSystems\Projections\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="geoapi.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="ffb69466-79de-466a-ada7-5c47c5c5ca3a" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

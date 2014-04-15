@@ -1,0 +1,923 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C6F14605-0DA6-420A-8DE7-18B57E9A9C99}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetTopologySuite</RootNamespace>
+    <AssemblyName>NetTopologySuite.PCL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile158</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PCL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\GeoAPI.Pcl\GeoAPI.Pcl.csproj">
+      <Project>{92b3b84b-50f1-4147-8b97-d93b90fa5514}</Project>
+      <Name>GeoAPI.Pcl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetTopologySuite.Encodings\NetTopologySuite.Encodings.csproj">
+      <Project>{02cb4412-3cdb-4506-b48a-0d43c423e8cb}</Project>
+      <Name>NetTopologySuite.Encodings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PowerCollections.Pcl\PowerCollections.Pcl.csproj">
+      <Project>{4fe07049-9f3a-42a4-8105-b1a72fe15c67}</Project>
+      <Name>PowerCollections.Pcl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dissolve\DissolveEdgeGraph.cs">
+    </Compile>
+    <Compile Include="Dissolve\DissolveHalfEdge.cs">
+    </Compile>
+    <Compile Include="Dissolve\LineDissolver.cs">
+    </Compile>
+    <Compile Include="EdgeGraph\EdgeGraph.cs">
+    </Compile>
+    <Compile Include="EdgeGraph\EdgeGraphBuilder.cs">
+    </Compile>
+    <Compile Include="EdgeGraph\HalfEdge.cs">
+    </Compile>
+    <Compile Include="EdgeGraph\MarkHalfEdge.cs">
+    </Compile>
+    <Compile Include="Noding\InteriorIntersectionFinderAdder.cs">
+    </Compile>
+    <Compile Include="Simplify\VWLineSimplifier.cs">
+    </Compile>
+    <Compile Include="Simplify\VWSimplifier.cs">
+    </Compile>
+    <Compile Include="SharedAssemblyVersion.cs">
+    </Compile>
+    <Compile Include="Algorithm\Angle.cs">
+    </Compile>
+    <Compile Include="Algorithm\BoundaryNodeRule.cs">
+    </Compile>
+    <Compile Include="Algorithm\CentralEndpointIntersector.cs">
+    </Compile>
+    <Compile Include="Algorithm\Centroid.cs">
+    </Compile>
+    <Compile Include="Algorithm\CentroidArea.cs">
+    </Compile>
+    <Compile Include="Algorithm\CentroidLine.cs">
+    </Compile>
+    <Compile Include="Algorithm\CentroidPoint.cs">
+    </Compile>
+    <Compile Include="Algorithm\CGAlgorithms.cs">
+    </Compile>
+    <Compile Include="Algorithm\CGAlgorithms3D.cs">
+    </Compile>
+    <Compile Include="Algorithm\CGAlgorithmsDD.cs">
+    </Compile>
+    <Compile Include="Algorithm\ConvexHull.cs">
+    </Compile>
+    <Compile Include="Algorithm\Distance\DiscreteHausdorffDistance.cs">
+    </Compile>
+    <Compile Include="Algorithm\Distance\DistanceToPoint.cs">
+    </Compile>
+    <Compile Include="Algorithm\Distance\PointPairDistance.cs">
+    </Compile>
+    <Compile Include="Algorithm\HCoordinate.cs">
+    </Compile>
+    <Compile Include="Algorithm\InteriorPointArea.cs">
+    </Compile>
+    <Compile Include="Algorithm\InteriorPointLine.cs">
+    </Compile>
+    <Compile Include="Algorithm\InteriorPointPoint.cs">
+    </Compile>
+    <Compile Include="Algorithm\IPointInAreaLocator.cs">
+    </Compile>
+    <Compile Include="Algorithm\IPointInRing.cs">
+    </Compile>
+    <Compile Include="Algorithm\LineIntersector.cs">
+    </Compile>
+    <Compile Include="Algorithm\Locate\IndexedPointInAreaLocator.cs">
+    </Compile>
+    <Compile Include="Algorithm\Locate\IPointOnGeometryLocator.cs">
+    </Compile>
+    <Compile Include="Algorithm\Locate\SimplePointInAreaLocator.cs">
+    </Compile>
+    <Compile Include="Algorithm\Match\AreaSimilarityMeasure.cs">
+    </Compile>
+    <Compile Include="Algorithm\Match\HausdorffSimilarityMeasure.cs">
+    </Compile>
+    <Compile Include="Algorithm\Match\ISimilarityMeasure.cs">
+    </Compile>
+    <Compile Include="Algorithm\Match\SimilarityMeasureCombiner.cs">
+    </Compile>
+    <Compile Include="Algorithm\MCPointInRing.cs">
+    </Compile>
+    <Compile Include="Algorithm\MinimumBoundingCircle.cs">
+    </Compile>
+    <Compile Include="Algorithm\MinimumDiameter.cs">
+    </Compile>
+    <Compile Include="Algorithm\NonRobustCGAlgorithms.cs">
+    </Compile>
+    <Compile Include="Algorithm\NonRobustLineIntersector.cs">
+    </Compile>
+    <Compile Include="Algorithm\NotRepresentableException.cs">
+    </Compile>
+    <Compile Include="Algorithm\PointLocator.cs">
+    </Compile>
+    <Compile Include="Algorithm\RayCrossingCounter.cs">
+    </Compile>
+    <Compile Include="Algorithm\RectangleLineIntersector.cs">
+    </Compile>
+    <Compile Include="Algorithm\RobustDeterminant.cs">
+    </Compile>
+    <Compile Include="Algorithm\RobustLineIntersector.cs">
+    </Compile>
+    <Compile Include="Algorithm\SimplePointInRing.cs">
+    </Compile>
+    <Compile Include="Algorithm\SIRtreePointInRing.cs">
+    </Compile>
+    <Compile Include="CoordinateSystems\Transformations\GeometryTransform.cs">
+    </Compile>
+    <Compile Include="Densify\Densifier.cs">
+    </Compile>
+    <Compile Include="Features\AttributesTable.cs">
+    </Compile>
+    <Compile Include="Features\Feature.cs">
+    </Compile>
+    <Compile Include="Features\IAttributesTable.cs">
+    </Compile>
+    <Compile Include="Geometries\CoordinateArrays.cs">
+    </Compile>
+    <Compile Include="Geometries\CoordinateList.cs">
+    </Compile>
+    <Compile Include="Geometries\CoordinateSequenceComparator.cs">
+    </Compile>
+    <Compile Include="Geometries\CoordinateSequences.cs">
+    </Compile>
+    <Compile Include="Geometries\DefaultCoordinateSequence.cs">
+    </Compile>
+    <Compile Include="Geometries\DefaultCoordinateSequenceFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Geometry.cs">
+    </Compile>
+    <Compile Include="Geometries\GeometryCollection.cs">
+    </Compile>
+    <Compile Include="Geometries\GeometryCollectionEnumerator.cs">
+    </Compile>
+    <Compile Include="Geometries\GeometryComponentFilter.cs">
+    </Compile>
+    <Compile Include="Geometries\GeometryFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\CoordinateArraySequence.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\CoordinateArraySequenceFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\DotSpatialAffineCoordinateSequence.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\DotSpatialAffineCoordinateSequenceFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\PackedCoordinateSequence.cs">
+    </Compile>
+    <Compile Include="Geometries\Implementation\PackedCoordinateSequenceFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\LinearRing.cs">
+    </Compile>
+    <Compile Include="Geometries\LineSegment.cs">
+    </Compile>
+    <Compile Include="Geometries\LineString.cs">
+    </Compile>
+    <Compile Include="Geometries\MultiLineString.cs">
+    </Compile>
+    <Compile Include="Geometries\MultiPoint.cs">
+    </Compile>
+    <Compile Include="Geometries\MultiPolygon.cs">
+    </Compile>
+    <Compile Include="Geometries\OctogonalEnvelope.cs">
+    </Compile>
+    <Compile Include="Geometries\OgcCompliantGeometryFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Point.cs">
+    </Compile>
+    <Compile Include="Geometries\Polygon.cs">
+    </Compile>
+    <Compile Include="Geometries\PrecisionModel.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\AbstractPreparedPolygonContains.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\BasicPreparedGeometry.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedGeometryFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedLineString.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedLineStringIntersects.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPoint.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygon.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygonContains.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygonContainsProperly.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygonCovers.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygonIntersects.cs">
+    </Compile>
+    <Compile Include="Geometries\Prepared\PreparedPolygonPredicate.cs">
+    </Compile>
+    <Compile Include="Geometries\TopologyException.cs">
+    </Compile>
+    <Compile Include="Geometries\Triangle.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\AffineTransformation.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\AffineTransformationBuilder.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\AffineTransformationFactory.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\ComponentGeometryExtractor.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryCollectionMapper.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryCombiner.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryEditor.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryExtracter.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryMapper.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\GeometryTransformer.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\LinearComponentExtracter.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\LineStringExtracter.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\Matrix.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\NoninvertibleTransformationException.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\PointExtracter.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\PolygonExtracter.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\ShortCircuitedGeometryVisitor.cs">
+    </Compile>
+    <Compile Include="Geometries\Utilities\SineStarFactory.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Depth.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\DirectedEdge.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\DirectedEdgeStar.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Edge.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeEnd.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeEndStar.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeIntersection.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeIntersectionList.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeList.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeNodingValidator.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\EdgeRing.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\GeometryGraph.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\GraphComponent.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\EdgeSetIntersector.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\MonotoneChain.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\MonotoneChainEdge.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\MonotoneChainIndexer.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SegmentIntersector.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SimpleEdgeSetIntersector.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SimpleMCSweepLineIntersector.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SimpleSweepLineIntersector.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SweepLineEvent.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Index\SweepLineSegment.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Label.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Node.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\NodeFactory.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\NodeMap.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\PlanarGraph.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\Position.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\QuadrantOp.cs">
+    </Compile>
+    <Compile Include="GeometriesGraph\TopologyLocation.cs">
+    </Compile>
+    <Compile Include="Index\ArrayListVisitor.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\Bintree.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\Interval.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\Key.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\Node.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\NodeBase.cs">
+    </Compile>
+    <Compile Include="Index\Bintree\Root.cs">
+    </Compile>
+    <Compile Include="Index\Chain\MonotoneChain.cs">
+    </Compile>
+    <Compile Include="Index\Chain\MonotoneChainBuilder.cs">
+    </Compile>
+    <Compile Include="Index\Chain\MonotoneChainOverlapAction.cs">
+    </Compile>
+    <Compile Include="Index\Chain\MonotoneChainSelectAction.cs">
+    </Compile>
+    <Compile Include="Index\IIndexVisitor.cs">
+    </Compile>
+    <Compile Include="Index\IItemVisitor.cs">
+    </Compile>
+    <Compile Include="Index\IntervalRTree\IntervalRTreeBranchNode.cs">
+    </Compile>
+    <Compile Include="Index\IntervalRTree\IntervalRTreeLeafNode.cs">
+    </Compile>
+    <Compile Include="Index\IntervalRTree\IntervalRTreeNode.cs">
+    </Compile>
+    <Compile Include="Index\IntervalRTree\SortedPackedIntervalRTree.cs">
+    </Compile>
+    <Compile Include="Index\ISpatialIndex.cs">
+    </Compile>
+    <Compile Include="Index\KdTree\KdNode.cs">
+    </Compile>
+    <Compile Include="Index\KdTree\KdTree.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\DoubleBits.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\IntervalSize.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\Key.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\Node.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\NodeBase.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\Quadtree.cs">
+    </Compile>
+    <Compile Include="Index\Quadtree\Root.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\AbstractNode.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\AbstractSTRtree.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\BoundablePair.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\GeometryItemDistance.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\IBoundable.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\IItemDistance.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\Interval.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\ItemBoundable.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\SIRtree.cs">
+    </Compile>
+    <Compile Include="Index\Strtree\STRtree.cs">
+    </Compile>
+    <Compile Include="Index\Sweepline\ISweepLineOverlapAction.cs">
+    </Compile>
+    <Compile Include="Index\Sweepline\SweepLineEvent.cs">
+    </Compile>
+    <Compile Include="Index\Sweepline\SweepLineIndex.cs">
+    </Compile>
+    <Compile Include="Index\Sweepline\SweepLineInterval.cs">
+    </Compile>
+    <Compile Include="IO\BEBinaryReader.cs">
+    </Compile>
+    <Compile Include="IO\BEBinaryWriter.cs">
+    </Compile>
+    <Compile Include="IO\GML2\GMLElements.cs">
+    </Compile>
+    <Compile Include="IO\GML2\GMLReader.cs">
+    </Compile>
+    <Compile Include="IO\GML2\GMLWriter.cs">
+    </Compile>
+    <Compile Include="IO\ParseException.cs">
+    </Compile>
+    <Compile Include="IO\WKBGeometryTypes.cs">
+    </Compile>
+    <Compile Include="IO\WKBReader.cs">
+    </Compile>
+    <Compile Include="IO\WKBWriter.cs">
+    </Compile>
+    <Compile Include="IO\WKTReader.cs">
+    </Compile>
+    <Compile Include="IO\WKTWriter.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\ExtractLineByLocation.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LengthIndexedLine.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LengthIndexOfPoint.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LengthLocationMap.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LinearGeometryBuilder.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LinearIterator.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LinearLocation.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LocationIndexedLine.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LocationIndexOfLine.cs">
+    </Compile>
+    <Compile Include="LinearReferencing\LocationIndexOfPoint.cs">
+    </Compile>
+    <Compile Include="Mathematics\DD.cs">
+    </Compile>
+    <Compile Include="Mathematics\MathUtil.cs">
+    </Compile>
+    <Compile Include="Mathematics\Matrix.cs">
+    </Compile>
+    <Compile Include="Mathematics\Plane3D.cs">
+    </Compile>
+    <Compile Include="Mathematics\Vector2D.cs">
+    </Compile>
+    <Compile Include="Mathematics\Vector3D.cs">
+    </Compile>
+    <Compile Include="Mathematics\VectorMath.cs">
+    </Compile>
+    <Compile Include="Noding\BasicSegmentString.cs">
+    </Compile>
+    <Compile Include="Noding\FastNodingValidator.cs">
+    </Compile>
+    <Compile Include="Noding\FastSegmentSetIntersectionFinder.cs">
+    </Compile>
+    <Compile Include="Noding\INodableSegmentString.cs">
+    </Compile>
+    <Compile Include="Noding\INoder.cs">
+    </Compile>
+    <Compile Include="Noding\InteriorIntersectionFinder.cs">
+    </Compile>
+    <Compile Include="Noding\IntersectionAdder.cs">
+    </Compile>
+    <Compile Include="Noding\IntersectionFinderAdder.cs">
+    </Compile>
+    <Compile Include="Noding\ISegmentIntersector.cs">
+    </Compile>
+    <Compile Include="Noding\ISegmentString.cs">
+    </Compile>
+    <Compile Include="Noding\IteratedNoder.cs">
+    </Compile>
+    <Compile Include="Noding\MCIndexNoder.cs">
+    </Compile>
+    <Compile Include="Noding\MCIndexSegmentSetMutualIntersector.cs">
+    </Compile>
+    <Compile Include="Noding\NodingValidator.cs">
+    </Compile>
+    <Compile Include="Noding\Octant.cs">
+    </Compile>
+    <Compile Include="Noding\OrientedCoordinateArray.cs">
+    </Compile>
+    <Compile Include="Noding\ScaledNoder.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentIntersectionDetector.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentNode.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentNodeList.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentPointComparator.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentSetMutualIntersector.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentString.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentStringDissolver.cs">
+    </Compile>
+    <Compile Include="Noding\SegmentStringUtil.cs">
+    </Compile>
+    <Compile Include="Noding\SimpleNoder.cs">
+    </Compile>
+    <Compile Include="Noding\SimpleSegmentSetMutualIntersector.cs">
+    </Compile>
+    <Compile Include="Noding\SinglePassNoder.cs">
+    </Compile>
+    <Compile Include="Noding\Snapround\GeometryNoder.cs">
+    </Compile>
+    <Compile Include="Noding\Snapround\HotPixel.cs">
+    </Compile>
+    <Compile Include="Noding\Snapround\MCIndexPointSnapper.cs">
+    </Compile>
+    <Compile Include="Noding\Snapround\MCIndexSnapRounder.cs">
+    </Compile>
+    <Compile Include="Noding\Snapround\SimpleSnapRounder.cs">
+    </Compile>
+    <Compile Include="NtsGeometryServices.cs">
+    </Compile>
+    <Compile Include="Operation\BoundaryOp.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\BufferBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\BufferInputLineSimplifier.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\BufferOp.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\BufferParameters.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\BufferSubgraph.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OffsetCurveBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OffsetCurveSetBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OffsetCurveVertexList.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OffsetSegmentGenerator.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OffsetSegmentString.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\OldOffsetCurveBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\RightmostEdgeFinder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\SubgraphDepthLocater.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\Validate\BufferCurveMaximumDistanceFinder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\Validate\BufferDistanceValidator.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\Validate\BufferResultValidator.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\Validate\DistanceToPointFinder.cs">
+    </Compile>
+    <Compile Include="Operation\Buffer\Validate\PointPairDistance.cs">
+    </Compile>
+    <Compile Include="Operation\Distance3D\AxisPlaneCoordinateSequence.cs">
+    </Compile>
+    <Compile Include="Operation\Distance3D\Distance3DOp.cs">
+    </Compile>
+    <Compile Include="Operation\Distance3D\PlanarPolygon3D.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\ConnectedElementLocationFilter.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\ConnectedElementPointFilter.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\DistanceOp.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\FacetSequence.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\FacetSequenceTreeBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\GeometryLocation.cs">
+    </Compile>
+    <Compile Include="Operation\Distance\IndexedFacedDistance.cs">
+    </Compile>
+    <Compile Include="Operation\GeometryGraphOperation.cs">
+    </Compile>
+    <Compile Include="Operation\IsSimpleOp.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\EdgeString.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\LineMergeDirectedEdge.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\LineMergeEdge.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\LineMergeGraph.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\LineMerger.cs">
+    </Compile>
+    <Compile Include="Operation\Linemerge\LineSequencer.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\EdgeSetNoder.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\LineBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\MaximalEdgeRing.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\MinimalEdgeRing.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\OverlayNodeFactory.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\OverlayOp.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\PointBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\PolygonBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Snap\GeometrySnapper.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Snap\LineStringSnapper.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Snap\SnapIfNeededOverlayOp.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Snap\SnapOverlayOp.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Validate\FuzzyPointLocator.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Validate\OffsetPointGenerator.cs">
+    </Compile>
+    <Compile Include="Operation\Overlay\Validate\OverlayResultValidator.cs">
+    </Compile>
+    <Compile Include="Operation\Polygonize\EdgeRing.cs">
+    </Compile>
+    <Compile Include="Operation\Polygonize\PolygonizeDirectedEdge.cs">
+    </Compile>
+    <Compile Include="Operation\Polygonize\PolygonizeEdge.cs">
+    </Compile>
+    <Compile Include="Operation\Polygonize\PolygonizeGraph.cs">
+    </Compile>
+    <Compile Include="Operation\Polygonize\Polygonizer.cs">
+    </Compile>
+    <Compile Include="Operation\Predicate\RectangleContains.cs">
+    </Compile>
+    <Compile Include="Operation\Predicate\RectangleIntersects.cs">
+    </Compile>
+    <Compile Include="Operation\Predicate\SegmentIntersectionTester.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\EdgeEndBuilder.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\EdgeEndBundle.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\EdgeEndBundleStar.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\RelateComputer.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\RelateNode.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\RelateNodeFactory.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\RelateNodeGraph.cs">
+    </Compile>
+    <Compile Include="Operation\Relate\RelateOp.cs">
+    </Compile>
+    <Compile Include="Operation\Union\CascadedPolygonUnion.cs">
+    </Compile>
+    <Compile Include="Operation\Union\PointGeometryUnion.cs">
+    </Compile>
+    <Compile Include="Operation\Union\UnaryUnionOp.cs">
+    </Compile>
+    <Compile Include="Operation\Union\UnionInteracting.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\ConnectedInteriorTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\ConsistentAreaTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\IndexedNestedRingTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\IsValidOp.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\QuadtreeNestedRingTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\RepeatedPointTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\SimpleNestedRingTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\SweeplineNestedRingTester.cs">
+    </Compile>
+    <Compile Include="Operation\Valid\TopologyValidationError.cs">
+    </Compile>
+    <Compile Include="Planargraph\Algorithm\ConnectedSubgraphFinder.cs">
+    </Compile>
+    <Compile Include="Planargraph\DirectedEdge.cs">
+    </Compile>
+    <Compile Include="Planargraph\DirectedEdgeStar.cs">
+    </Compile>
+    <Compile Include="Planargraph\Edge.cs">
+    </Compile>
+    <Compile Include="Planargraph\GraphComponent.cs">
+    </Compile>
+    <Compile Include="Planargraph\Node.cs">
+    </Compile>
+    <Compile Include="Planargraph\NodeMap.cs">
+    </Compile>
+    <Compile Include="Planargraph\PlanarGraph.cs">
+    </Compile>
+    <Compile Include="Planargraph\Subgraph.cs">
+    </Compile>
+    <Compile Include="Precision\CommonBits.cs">
+    </Compile>
+    <Compile Include="Precision\CommonBitsOp.cs">
+    </Compile>
+    <Compile Include="Precision\CommonBitsRemover.cs">
+    </Compile>
+    <Compile Include="Precision\CoordinatePrecisionReducerFilter.cs">
+    </Compile>
+    <Compile Include="Precision\EnhancedPrecisionOp.cs">
+    </Compile>
+    <Compile Include="Precision\GeometryPrecisionReducer.cs">
+    </Compile>
+    <Compile Include="Precision\MinimumClearance.cs">
+    </Compile>
+    <Compile Include="Precision\PrecisionReducerCoordinateOperation.cs">
+    </Compile>
+    <Compile Include="Precision\SimpleGeometryPrecisionReducer.cs">
+    </Compile>
+    <Compile Include="Precision\SimpleMinimumClearance.cs">
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+    </Compile>
+    <Compile Include="Shape\Fractal\KochSnowflakeBuilder.cs">
+    </Compile>
+    <Compile Include="Shape\Fractal\SierpinskiCarpetBuilder.cs">
+    </Compile>
+    <Compile Include="Shape\GeometricShapeBuilder.cs">
+    </Compile>
+    <Compile Include="Shape\Random\RandomPointsBuilder.cs">
+    </Compile>
+    <Compile Include="Shape\Random\RandomPointsInGridBuilder.cs">
+    </Compile>
+    <Compile Include="Simplify\DouglasPeuckerLineSimplifier.cs">
+    </Compile>
+    <Compile Include="Simplify\DouglasPeuckerSimplifier.cs">
+    </Compile>
+    <Compile Include="Simplify\LineSegmentIndex.cs">
+    </Compile>
+    <Compile Include="Simplify\TaggedLineSegment.cs">
+    </Compile>
+    <Compile Include="Simplify\TaggedLinesSimplifier.cs">
+    </Compile>
+    <Compile Include="Simplify\TaggedLineString.cs">
+    </Compile>
+    <Compile Include="Simplify\TaggedLineStringSimplifier.cs">
+    </Compile>
+    <Compile Include="Simplify\TopologyPreservingSimplifier.cs">
+    </Compile>
+    <Compile Include="Triangulate\ConformingDelaunayTriangulationBuilder.cs">
+    </Compile>
+    <Compile Include="Triangulate\ConformingDelaunayTriangulator.cs">
+    </Compile>
+    <Compile Include="Triangulate\ConstraintEnforcementException.cs">
+    </Compile>
+    <Compile Include="Triangulate\ConstraintVertex.cs">
+    </Compile>
+    <Compile Include="Triangulate\ConstraintVertexFactory.cs">
+    </Compile>
+    <Compile Include="Triangulate\DelaunayTriangulationBuilder.cs">
+    </Compile>
+    <Compile Include="Triangulate\IConstraintSplitPointFinder.cs">
+    </Compile>
+    <Compile Include="Triangulate\IncrementalDelaunayTriangulator.cs">
+    </Compile>
+    <Compile Include="Triangulate\MidpointSplitPointFinder.cs">
+    </Compile>
+    <Compile Include="Triangulate\NonEncroachingSplitPointFinder.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\EdgeConnectedTriangleTraversal.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\IQuadEdgeLocator.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\ITraversalVisitor.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\ITriangleVisitor.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\LastFoundQuadEdgeLocator.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\LocateFailureException.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\QuadEdge.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\QuadEdgeSubdivision.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\QuadEdgeTriangle.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\QuadEdgeUtil.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\TrianglePredicate.cs">
+    </Compile>
+    <Compile Include="Triangulate\QuadEdge\Vertex.cs">
+    </Compile>
+    <Compile Include="Triangulate\Segment.cs">
+    </Compile>
+    <Compile Include="Triangulate\SplitSegment.cs">
+    </Compile>
+    <Compile Include="Triangulate\VertexTaggedGeometryDataMapper.cs">
+    </Compile>
+    <Compile Include="Triangulate\VoronoiDiagramBuilder.cs">
+    </Compile>
+    <Compile Include="Utilities\Assert.cs">
+    </Compile>
+    <Compile Include="Utilities\AssertionFailedException.cs">
+    </Compile>
+    <Compile Include="Utilities\BitConverter.cs">
+    </Compile>
+    <Compile Include="Utilities\Caster.cs">
+    </Compile>
+    <Compile Include="Utilities\CollectionUtil.cs">
+    </Compile>
+    <Compile Include="Utilities\CoordinateArrayFilter.cs">
+    </Compile>
+    <Compile Include="Utilities\CoordinateCompare.cs">
+    </Compile>
+    <Compile Include="Utilities\CoordinateCountFilter.cs">
+    </Compile>
+    <Compile Include="Utilities\Degrees.cs">
+    </Compile>
+    <Compile Include="Utilities\EnumUtility.cs">
+    </Compile>
+    <Compile Include="Utilities\GeometricShapeFactory.cs">
+    </Compile>
+    <Compile Include="Utilities\Global.cs">
+    </Compile>
+    <Compile Include="Utilities\Guard.cs">
+    </Compile>
+    <Compile Include="Utilities\HexConverter.cs">
+    </Compile>
+    <Compile Include="Utilities\Memory.cs">
+    </Compile>
+    <Compile Include="Utilities\PlatformUtilityEx.cs">
+    </Compile>
+    <Compile Include="Utilities\PriorityQueue.cs">
+    </Compile>
+    <Compile Include="Utilities\Radians.cs">
+    </Compile>
+    <Compile Include="Utilities\ReverseOrder.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\BufferedTextReader.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\CharBuffer.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\Logger.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\Opts.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\ParseUtil.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\SoftwarePackage.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\StreamTokenizer.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\Token.cs">
+    </Compile>
+    <Compile Include="Utilities\RToolsUtil\VerbosityLevel.cs">
+    </Compile>
+    <Compile Include="Utilities\StreamTokenizer.cs">
+    </Compile>
+    <Compile Include="Utilities\UniqueCoordinateArrayFilter.cs">
+    </Compile>
+    <Compile Include="Extension\ICoordinateEx.cs" />
+    <Compile Include="Extension\IEnvelopeEx.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt">
+    </Content>
+    <Resource Include="Precision\DocFiles\minClearance.png">
+    </Resource>
+    <Content Include="Precision\PrecisionSummary.xml">
+    </Content>
+    <Content Include="ReadMe.txt">
+    </Content>
+    <Content Include="Simplify\SimplifySummary.xml">
+    </Content>
+    <Content Include="Utilities\RToolsUtil\Rtools.Util.License.txt">
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

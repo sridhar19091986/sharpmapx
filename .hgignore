@@ -1,0 +1,23 @@
+syntax: glob
+SharpMapX.Wp.Sample/obj
+SharpMapX.Wp.Sample/Bin
+Portable/obj
+NetTopologySuite/GeoAPI.Pcl/Bin
+NetTopologySuite/NetTopologySuite.Pcl/Bin
+NetTopologySuite/NetTopologySuite.Pcl/obj
+Portable.Net/bin
+Portable/bin
+Portable.Net/obj
+SharpMapX/bin
+SharpMapX/obj
+Portable/obj
+NetTopologySuite/GeoAPI.Pcl/obj
+NetTopologySuite/ProjNet.Pcl/obj/
+NetTopologySuite/ProjNet.Pcl/bin
+NetTopologySuite/PowerCollections.Pcl/obj/
+NetTopologySuite/PowerCollections.Pcl/bin
+NetTopologySuite/ProjNet.Pcl/obj/
+NetTopologySuite/ProjNet.Pcl/bin
+*.suo
+SharpMapX.Tests/bin
+SharpMapX.Tests/obj
