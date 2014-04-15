@@ -17,10 +17,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 For more information, contact:
 
-    Fabrizio Vita
-    via Belvedere 38
+	Fabrizio Vita
+	via Belvedere 38
 	40069 Zola Predosa (BO)
-    itacasoft@gmail.com
+	itacasoft@gmail.com
 
 
 
