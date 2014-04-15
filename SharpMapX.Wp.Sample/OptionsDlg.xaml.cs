@@ -12,10 +12,10 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using SharpMap.Mobile.Wp.Sample.Providers;
+using SharpMapX.Wp.Sample.Providers;
 using System.Windows.Controls.Primitives;
 
-namespace SharpMap.Mobile.Wp.Sample
+namespace SharpMapX.Wp.Sample
 {
     public partial class OptionsDlg : UserControl
     {

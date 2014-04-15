@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpMap.Mobile.Wp.Sample.Providers
+namespace SharpMapX.Wp.Sample.Providers
 {
     public enum ProviderMapType
     {

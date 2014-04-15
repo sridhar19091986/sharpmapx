@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
-namespace SharpMap.Mobile.Wp.Sample
+namespace SharpMapX.Wp.Sample
 {
     public partial class App : Application
     {

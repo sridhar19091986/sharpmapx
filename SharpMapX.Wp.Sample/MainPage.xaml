@@ -6,9 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Microsoft_Phone_Controls_Maps="clr-namespace:Microsoft.Phone.Controls.Maps;assembly=Microsoft.Phone.Controls.Maps"  
-    xmlns:my="clr-namespace:SharpMap.Mobile.Wp.Sample.Providers"     
+    xmlns:my="clr-namespace:SharpMapX.Wp.Sample.Providers"     
     xmlns:MSPCMCore="clr-namespace:Microsoft.Phone.Controls.Maps.Core;assembly=Microsoft.Phone.Controls.Maps"
-    x:Class="SharpMap.Mobile.Wp.Sample.MainPage"
+    x:Class="SharpMapX.Wp.Sample.MainPage"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="696" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">

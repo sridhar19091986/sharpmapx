@@ -5,7 +5,7 @@
 //===============================================================================
 using System;
 
-namespace SharpMap.Mobile.Wp.Sample.Providers
+namespace SharpMapX.Wp.Sample.Providers
 {
     public enum GoogleTileTypes
     {

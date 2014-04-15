@@ -3,21 +3,9 @@
 // Date: 2014-02-22
 // Copyright: (c)2010-2014 ItacaSoft di Vita Fabrizio. ALL RIGHTS RESERVED.
 //===============================================================================
-using System.Windows;
-using Microsoft.Phone.Controls;
-using System;
-using Microsoft.Phone.Controls.Maps;
-using System.Windows.Media;
-using System.Device.Location;
-using Microsoft.Phone.Shell;
-//==============================================================================
-// Author: Fabrizio Vita            
-// Date: 2014-03-20
-// Copyright: (c)2010-2011 ItacaSoft di Vita Fabrizio. ALL RIGHTS RESERVED.
-//===============================================================================
 using System.Windows.Controls.Primitives;
 using Microsoft.Phone.Controls.Maps.Core;
-using SharpMap.Mobile.Wp.Sample.Providers;
+using SharpMapX.Wp.Sample.Providers;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using Size = SharpMap.Styles.Size;
@@ -26,8 +14,13 @@ using System.Globalization;
 using Portable.Http;
 using GeoAPI.Geometries;
 using SharpMap.GMLUtils;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Controls.Maps;
+using Microsoft.Phone.Shell;
+using System;
+using System.Windows;
 
-namespace SharpMap.Mobile.Wp.Sample
+namespace SharpMapX.Wp.Sample
 {
     public partial class MainPage : PhoneApplicationPage
     {
@@ -83,17 +76,20 @@ namespace SharpMap.Mobile.Wp.Sample
         #region GetFeatureInfo
         private void MyMap_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Point p = e.GetPosition(MyMap);
+            if (GetFeatureInfoEnabled)
+            {
+                Point p = e.GetPosition(MyMap);
 
-            var aSize = new Size();
-            aSize.Width = MyMap.ActualWidth;
-            aSize.Height = MyMap.ActualHeight;
+                var aSize = new Size();
+                aSize.Width = MyMap.ActualWidth;
+                aSize.Height = MyMap.ActualHeight;
 
-            string url = GetFeatureInfoRequest((int)p.X, (int)p.Y, aSize, MyMap.BoundingRectangle);
+                string url = GetFeatureInfoRequest((int)p.X, (int)p.Y, aSize, MyMap.BoundingRectangle);
 
-            WebClient client = new WebClient();
-            client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(GetFeatureInfoCompleted);
-            client.DownloadStringAsync(new Uri(url, UriKind.RelativeOrAbsolute));
+                WebClient client = new WebClient();
+                client.DownloadStringCompleted += new DownloadStringCompletedEventHandler(GetFeatureInfoCompleted);
+                client.DownloadStringAsync(new Uri(url, UriKind.RelativeOrAbsolute));
+            }
         }
 
 
@@ -104,7 +100,7 @@ namespace SharpMap.Mobile.Wp.Sample
 
             b.Append("?request=getfeatureinfo");
             b.Append("&SRS=EPSG:3857");
-            b.Append("&info_format=" + INFO_FORMAT_HTML);
+            b.Append("&info_format=" + INFO_FORMAT_GML);
             b.Append("&layers=&styles=");
             b.Append("&query_layers=");
             b.Append(QueryLayer);
@@ -149,7 +145,7 @@ namespace SharpMap.Mobile.Wp.Sample
                     optionsScreen.HorizontalOffset = 25;
 
                     return;
-                    SharpMap.GMLUtils.GMLProvider reader = new GMLUtils.GMLProvider(e.Result, gl);
+                    SharpMap.GMLUtils.GMLProvider reader = new SharpMap.GMLUtils.GMLProvider(e.Result, gl);
                     var geometries = reader.Features;
 
                 }

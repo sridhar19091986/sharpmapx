@@ -3,17 +3,11 @@
 // Date: 2014-03-20
 // Copyright: (c)2010-2011 ItacaSoft di Vita Fabrizio. ALL RIGHTS RESERVED.
 //===============================================================================
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
+using System.Windows.Controls.Primitives;
 
-namespace SharpMap.Mobile.Wp.Sample
+namespace SharpMapX.Wp.Sample
 {
     public partial class ShowFeatureDlg : UserControl
     {
@@ -29,5 +23,20 @@ namespace SharpMap.Mobile.Wp.Sample
             webBrowser1.NavigateToString(html);
         }
 
+        private void ClosePopup()
+        {
+            Popup myPop = this.Parent as Popup;
+            myPop.IsOpen = false;
+        }
+
+        private void Button_BindingValidationError(object sender, ValidationErrorEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ClosePopup();
+        }
     }
 }

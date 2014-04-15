@@ -3,7 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" x:Class="SharpMap.Mobile.Wp.Sample.ShowFeatureDlg"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone" 
+    x:Class="SharpMapX.Wp.Sample.ShowFeatureDlg"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -13,6 +14,7 @@
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
 
         <phone:WebBrowser HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Height="470" Width="480" x:Name="webBrowser1"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="177,398,0,0" VerticalAlignment="Top" BindingValidationError="Button_BindingValidationError" Click="Button_Click"/>
 
     </Grid>
 </UserControl>
