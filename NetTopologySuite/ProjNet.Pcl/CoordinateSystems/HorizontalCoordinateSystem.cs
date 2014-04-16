@@ -23,13 +23,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// A 2D coordinate system suitable for positions on the Earth's surface.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public abstract class HorizontalCoordinateSystem : CoordinateSystem, IHorizontalCoordinateSystem
+    public abstract class HorizontalCoordinateSystem : CoordinateSystem, IHorizontalCoordinateSystem
 	{
 		/// <summary>
 		/// Creates an instance of HorizontalCoordinateSystem

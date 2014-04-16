@@ -6,29 +6,29 @@ namespace NetTopologySuite.Features
     ///<summary>
     /// Feature class
     ///</summary>
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
 #endif
-    public class Feature
+    public class Feature : IFeature
     {
-
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
-        [System.Runtime.Serialization.DataMember(Name="Geometry")]
+        
+#if PCL
+    [System.Runtime.Serialization.DataMember(Name="Geometry")]
 #endif
         private IGeometry _geometry;
 
         /// <summary>
         /// Geometry representation of the feature.
         /// </summary>
-        public IGeometry Geometry
+        public virtual IGeometry Geometry
         {
             get { return _geometry; }
             set { _geometry = value; }
         }
 
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if PCL
         [System.Runtime.Serialization.DataMember(Name = "Attributes")]
 #endif
         private IAttributesTable _attributes;
@@ -36,7 +36,7 @@ namespace NetTopologySuite.Features
         /// <summary>
         /// Attributes table of the feature.
         /// </summary>
-        public IAttributesTable Attributes
+        public virtual IAttributesTable Attributes
         {
             get { return _attributes; }
             set { _attributes = value; }

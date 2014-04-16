@@ -32,13 +32,11 @@ namespace ProjNet.CoordinateSystems
 	/// as center of mass) and physical directions (such as axis of spin). The definition 
 	/// of the datum may also include the temporal behavior (such as the rate of change of
 	/// the orientation of the coordinate axes).
-	/// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </remarks>
+#if !PCL 
+    [Serializable] 
 #endif
-	public abstract class Datum : Info, IDatum
+    public abstract class Datum : Info, IDatum
 	{
 		/// <summary>
 		/// Initializes a new instance of a Datum object

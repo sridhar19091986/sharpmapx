@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 	/// <summary>
 	/// The GeographicTransform class is implemented on geographic transformation objects and
 	/// implements datum transformations between geographic coordinate systems.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class GeographicTransform : Info, IGeographicTransform
+    public class GeographicTransform : Info, IGeographicTransform
 	{
 		internal GeographicTransform(
 			string name, string authority, long code, string alias, string remarks, string abbreviation,

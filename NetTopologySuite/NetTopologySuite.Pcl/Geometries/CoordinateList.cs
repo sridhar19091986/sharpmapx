@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using GeoAPI.Geometries;
 
-#if PCL || WINDOWS_PHONE
+#if PCL
 using ICloneable = GeoAPI.ICloneable;
 #endif
 

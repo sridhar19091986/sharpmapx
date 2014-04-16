@@ -9,7 +9,7 @@ namespace NetTopologySuite.Geometries
     /// <summary>
     /// Basic implementation of <c>MultiLineString</c>.
     /// </summary>    
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]

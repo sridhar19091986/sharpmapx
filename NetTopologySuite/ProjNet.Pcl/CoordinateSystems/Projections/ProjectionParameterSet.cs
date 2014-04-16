@@ -9,16 +9,14 @@ namespace ProjNet.CoordinateSystems.Projections
     /// <summary>
     /// A set of projection parameters
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     public class ProjectionParameterSet : Dictionary<string, double>, IEquatable<ProjectionParameterSet>
     {
         private readonly Dictionary<string, string> _originalNames = new Dictionary<string, string>();
         private readonly Dictionary<int, string>  _originalIndex = new Dictionary<int, string>();
-#if (!SILVERLIGHT) && (!PCL)
+#if !PCL
         /// <summary>
         /// Needed for serialzation
         /// </summary>

@@ -25,12 +25,10 @@ namespace ProjNet.CoordinateSystems.Transformations
     /// <summary>
     /// 
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
-	internal class ConcatenatedTransform : MathTransform
+    internal class ConcatenatedTransform : MathTransform
 	{
         /// <summary>
         /// 

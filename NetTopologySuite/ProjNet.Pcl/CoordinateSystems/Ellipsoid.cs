@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// The IEllipsoid interface defines the standard information stored with ellipsoid objects.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class Ellipsoid : Info, IEllipsoid
+    public class Ellipsoid : Info, IEllipsoid
 	{
 		/// <summary>
 		/// Initializes a new instance of an Ellipsoid

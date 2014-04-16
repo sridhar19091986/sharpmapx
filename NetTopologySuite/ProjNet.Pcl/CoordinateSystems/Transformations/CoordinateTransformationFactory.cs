@@ -253,11 +253,7 @@ namespace ProjNet.CoordinateSystems.Transformations
 
 		    var ellipsoid = geo.HorizontalDatum.Ellipsoid;
             //var toMeter = ellipsoid.AxisUnit.MetersPerUnit;
-#if !PCL
-            if (parameterList.Find((p) => p.Name.ToLower(CultureInfo.InvariantCulture).Replace(' ', '_').Equals("semi_major")) == null)
-#else
             if (parameterList.Find((p) => p.Name.ToLowerInvariant().Replace(' ', '_').Equals("semi_major")) == null)
-#endif
                 parameterList.Add(new ProjectionParameter("semi_major", /*toMeter * */ellipsoid.SemiMajorAxis));
             if (parameterList.Find((p) => p.Name.ToLowerInvariant().Replace(' ', '_').Equals("semi_minor")) == null)
                 parameterList.Add(new ProjectionParameter("semi_minor", /*toMeter * */ellipsoid.SemiMinorAxis));
@@ -271,23 +267,11 @@ namespace ProjNet.CoordinateSystems.Transformations
 				parameterList.Add(projection.GetParameter(i));
 
 		    //var toMeter = 1d/ellipsoid.AxisUnit.MetersPerUnit;
-#if !PCL
-            if (parameterList.Find((p) => p.Name.ToLower(CultureInfo.InvariantCulture).Replace(' ', '_').Equals("semi_major")) == null)
-#else
             if (parameterList.Find((p) => p.Name.ToLowerInvariant().Replace(' ', '_').Equals("semi_major")) == null)
-#endif
 			    parameterList.Add(new ProjectionParameter("semi_major", /*toMeter * */ellipsoid.SemiMajorAxis));
-#if !PCL
-            if (parameterList.Find((p) => p.Name.ToLower(CultureInfo.InvariantCulture).Replace(' ', '_').Equals("semi_minor")) == null)
-#else
             if (parameterList.Find((p) => p.Name.ToLowerInvariant().Replace(' ', '_').Equals("semi_minor")) == null)
-#endif
                 parameterList.Add(new ProjectionParameter("semi_minor", /*toMeter * */ellipsoid.SemiMinorAxis));
-#if !PCL
-            if (parameterList.Find((p) => p.Name.ToLower(CultureInfo.InvariantCulture).Replace(' ', '_').Equals("unit")) == null)
-#else
             if (parameterList.Find((p) => p.Name.ToLowerInvariant().Replace(' ', '_').Equals("unit")) == null)
-#endif
                 parameterList.Add(new ProjectionParameter("unit", unit.MetersPerUnit));
 
             var operation = ProjectionsRegistry.CreateProjection(projection.ClassName, parameterList);

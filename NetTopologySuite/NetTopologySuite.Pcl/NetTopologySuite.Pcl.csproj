@@ -67,6 +67,8 @@
     </Compile>
     <Compile Include="EdgeGraph\MarkHalfEdge.cs">
     </Compile>
+    <Compile Include="Features\IFeature.cs" />
+    <Compile Include="IO\NtsDataContractSerializer.cs" />
     <Compile Include="Noding\InteriorIntersectionFinderAdder.cs">
     </Compile>
     <Compile Include="Simplify\VWLineSimplifier.cs">

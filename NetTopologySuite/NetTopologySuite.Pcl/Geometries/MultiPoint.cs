@@ -6,7 +6,7 @@ namespace NetTopologySuite.Geometries
     /// <summary>  
     /// Models a collection of <c>Point</c>s.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]

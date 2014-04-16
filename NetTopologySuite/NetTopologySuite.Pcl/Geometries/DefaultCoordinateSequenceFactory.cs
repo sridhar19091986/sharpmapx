@@ -7,7 +7,7 @@ namespace NetTopologySuite.Geometries
     /// Creates CoordinateSequences internally represented
     /// as an array of x's and an array of y's.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]

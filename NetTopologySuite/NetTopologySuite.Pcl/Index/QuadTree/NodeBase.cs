@@ -7,7 +7,7 @@ namespace NetTopologySuite.Index.Quadtree
     /// <summary>
     /// The base class for nodes in a <c>Quadtree</c>.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]
@@ -43,6 +43,9 @@ namespace NetTopologySuite.Index.Quadtree
         /// <summary>
         /// 
         /// </summary>
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private List<T> _items = new List<T>();
 
         /// <summary>
@@ -51,6 +54,9 @@ namespace NetTopologySuite.Index.Quadtree
         /// --+--
         /// 0 | 1
         /// </summary>
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         protected Node<T>[] Subnode = new Node<T>[4];
 
         /// <summary>

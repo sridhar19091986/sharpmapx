@@ -5,19 +5,19 @@ namespace NetTopologySuite.Index.Bintree
     /// <summary> 
     /// Represents an (1-dimensional) closed interval on the Real number line.
     /// </summary>
-#if (SILVERLIGHT||PCL || WINDOWS_PHONE)
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
 #endif
     public class Interval
     {
-#if (SILVERLIGHT||PCL || WINDOWS_PHONE)
-        [System.Runtime.Serialization.DataMember]
+#if PCL
+    [System.Runtime.Serialization.DataMember]
 #endif
         private double _min;
-#if (SILVERLIGHT||PCL || WINDOWS_PHONE)
-        [System.Runtime.Serialization.DataMember]
+#if PCL
+    [System.Runtime.Serialization.DataMember]
 #endif
     private double _max;
 

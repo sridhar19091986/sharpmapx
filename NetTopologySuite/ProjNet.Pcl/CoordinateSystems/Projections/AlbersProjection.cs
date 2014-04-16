@@ -56,13 +56,11 @@ namespace ProjNet.CoordinateSystems.Projections
 	///		image of those parallels and meridians in the projected domain, that is,
 	///		the projection preserves the correct area of the earth though distorts
 	///		direction, distance and shape somewhat.</para>
-	/// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </remarks>
+#if !PCL 
+    [Serializable] 
 #endif
-	internal class AlbersProjection : MapProjection
+    internal class AlbersProjection : MapProjection
 	{
 	    private readonly double _c;		//constant c 
         private readonly double _ro0;

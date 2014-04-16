@@ -2,16 +2,13 @@ using System;
 using System.Collections.Generic;
 using GeoAPI.Geometries;
 using NetTopologySuite.Utilities;
-#if SILVERLIGHT
-using ArrayList = System.Collections.Generic.List<object>;
-#endif
 
 namespace NetTopologySuite.Geometries
 {
     /// <summary>
     /// Basic implementation of <c>GeometryCollection</c>.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]
@@ -26,6 +23,9 @@ namespace NetTopologySuite.Geometries
         /// <summary>
         /// Internal representation of this <c>GeometryCollection</c>.        
         /// </summary>
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private IGeometry[] _geometries;
 
         /// <summary>

@@ -31,13 +31,11 @@ namespace ProjNet.CoordinateSystems
 	/// You can find out which this is by examining the axes. You should also 
 	/// check the angular units, since not all geographic coordinate systems 
 	/// use degrees.
-	/// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </remarks>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class GeographicCoordinateSystem : HorizontalCoordinateSystem, IGeographicCoordinateSystem
+    public class GeographicCoordinateSystem : HorizontalCoordinateSystem, IGeographicCoordinateSystem
 	{
 
 		/// <summary>

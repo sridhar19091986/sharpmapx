@@ -25,13 +25,11 @@ namespace ProjNet.CoordinateSystems.Transformations
 {
 	/// <summary>
 	/// Transformation for applying 
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	internal class DatumTransform : MathTransform
+    internal class DatumTransform : MathTransform
 	{
 		protected IMathTransform _inverse;
 		private readonly Wgs84ConversionInfo _toWgs94;

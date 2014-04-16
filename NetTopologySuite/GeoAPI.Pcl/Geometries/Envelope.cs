@@ -1,6 +1,7 @@
 using System;
-
-#if !(WINDOWS_PHONE || PCL)
+using System.Globalization;
+using System.Text;
+#if !PCL
 using BitConverter = System.BitConverter;
 #else
 
@@ -19,7 +20,7 @@ namespace GeoAPI.Geometries
     /// When Envelope objects are created or initialized,
     /// the supplies extent values are automatically sorted into the correct order.
     /// </summary>
-#if SILVERLIGHT || PCL || WINDOWS_PHONE
+    #if PCL
     [System.Runtime.Serialization.DataContract]
     #else
     [Serializable]
@@ -80,7 +81,7 @@ namespace GeoAPI.Geometries
         /*
         *  the minimum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _minx;
@@ -88,7 +89,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum x-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxx;
@@ -96,7 +97,7 @@ namespace GeoAPI.Geometries
         /*
         * the minimum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _miny;
@@ -104,7 +105,7 @@ namespace GeoAPI.Geometries
         /*
         *  the maximum y-coordinate
         */
-#if (SILVERLIGHT || PCL)
+#if PCL
         [System.Runtime.Serialization.DataMember]
 #endif
         private double _maxy;
@@ -812,7 +813,19 @@ namespace GeoAPI.Geometries
 
         public override string ToString()
         {
-            return "Env[" + _minx + " : " + _maxx + ", " + _miny + " : " + _maxy + "]";
+            var sb = new StringBuilder("Env[");
+            if (IsNull)
+            {
+                sb.Append("Null]");
+            }
+            else
+            {
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}, ", _minx, _maxx);
+                sb.AppendFormat(NumberFormatInfo.InvariantInfo, "{0:R} : {1:R}]", _miny, _maxy);
+            }
+            return sb.ToString();
+
+            //return "Env[" + _minx + " : " + _maxx + ", " + _miny + " : " + _maxy + "]";
         }
 
         /// <summary>
@@ -834,6 +847,11 @@ namespace GeoAPI.Geometries
         /// <returns></returns>
         public Envelope Clone()
         {
+            if (IsNull)
+            {
+                // #179: This will create a new 'NULL' envelope
+                return new Envelope();                
+            }
             return new Envelope(_minx, _maxx, _miny, _maxy);
         }
 
@@ -850,8 +868,8 @@ namespace GeoAPI.Geometries
         /// </summary>
         IEnvelope IEnvelope.Union(ICoordinate coord)
         {
-            var env = Clone();
-            ((IEnvelope)env).ExpandToInclude(coord);
+            IEnvelope env = Clone();
+            env.ExpandToInclude(coord);
             return env;
         }
 
@@ -1231,5 +1249,50 @@ namespace GeoAPI.Geometries
 #pragma warning restore 612,618
 
         #endregion BEGIN ADDED BY MPAUL42: monoGIS team
+
+        /// <summary>
+        /// Method to parse an envelope from its <see cref="Envelope.ToString"/> value
+        /// </summary>
+        /// <param name="envelope">The envelope string</param>
+        /// <returns>The envelope</returns>
+        public static Envelope Parse(string envelope)
+        {
+            if (string.IsNullOrEmpty(envelope))
+                throw new ArgumentNullException("envelope");
+            if (!(envelope.StartsWith("Env[") && envelope.EndsWith("]")))
+                throw new ArgumentException("Not a valid envelope string", "envelope");
+
+            // test for null
+            envelope = envelope.Substring(4, envelope.Length - 5);
+            if (envelope == "Null")
+                return new Envelope();
+
+            // Parse values
+            var ordinatesValues = new double[4];
+            var ordinateLabel = new [] {"x", "y"};
+            var j = 0;
+
+            // split into ranges
+            var parts = envelope.Split(',');
+            if (parts.Length != 2)
+                throw new ArgumentException("Does not provide two ranges", "envelope");
+
+            foreach (var part in parts)
+            {
+                // Split int min/max
+                var ordinates = part.Split(':');
+                if (ordinates.Length != 2)
+                    throw new ArgumentException("Does not provide just min and max values", "envelope");
+
+                if (!double.TryParse(ordinates[0].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j]))
+                    throw new ArgumentException(string.Format("Could not parse min {0}-Ordinate", ordinateLabel[j]), "envelope");
+                if (!double.TryParse(ordinates[1].Trim(), NumberStyles.Number, NumberFormatInfo.InvariantInfo, out ordinatesValues[2*j+1]))
+                    throw new ArgumentException(string.Format("Could not parse max {0}-Ordinate", ordinateLabel[j]), "envelope");
+                j++;
+            }
+
+            return new Envelope(ordinatesValues[0], ordinatesValues[1], 
+                                ordinatesValues[2], ordinatesValues[3]);
+        }
     }
 }

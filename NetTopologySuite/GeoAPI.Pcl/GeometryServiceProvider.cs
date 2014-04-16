@@ -58,11 +58,7 @@ namespace GeoAPI
                 var types = ex.Types;
                 IList<Type> list = new List<Type>(types.Length);
                 foreach (var t in types)
-                    if (t != null 
-#if !PCL
-                        && t.IsPublic
-#endif
-                        )
+                    if (t != null && t.IsPublic)
                         list.Add(t);
                 return list;
             }
@@ -70,7 +66,7 @@ namespace GeoAPI
 
         private static IGeometryServices ReflectInstance()
         {
-#if !(SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if !PCL
             var a = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in a)
             {

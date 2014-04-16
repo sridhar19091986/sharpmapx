@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// Definition of angular units.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class AngularUnit : Info, IAngularUnit
+    public class AngularUnit : Info, IAngularUnit
 	{
 		/// <summary>
 		/// Initializes a new instance of a angular unit

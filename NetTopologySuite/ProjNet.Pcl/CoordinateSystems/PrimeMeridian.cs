@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// A meridian used to take longitude measurements from.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class PrimeMeridian : Info, IPrimeMeridian
+    public class PrimeMeridian : Info, IPrimeMeridian
 	{
 		/// <summary>
 		/// Initializes a new instance of a prime meridian

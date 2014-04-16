@@ -42,10 +42,8 @@ using GeoAPI.CoordinateSystems.Transformations;
 
 namespace ProjNet.CoordinateSystems.Projections
 {
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     internal class PseudoMercator : Mercator
     {
@@ -92,13 +90,11 @@ namespace ProjNet.CoordinateSystems.Projections
 	/// appear disproportionately large. On a Mercator projection, for example, the landmass of Greenland appears to be
 	/// greater than that of the continent of South America; in actual area, Greenland is smaller than the Arabian Peninsula.
 	/// </para>
-	/// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </remarks>
+#if !PCL 
+    [Serializable] 
 #endif
-	internal class Mercator : MapProjection
+    internal class Mercator : MapProjection
 	{
 		//double lon_center;		//Center longitude (projection center)
 		//double lat_origin;		//center latitude

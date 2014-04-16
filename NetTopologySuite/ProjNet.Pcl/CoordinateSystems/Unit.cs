@@ -24,11 +24,9 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// Class for defining units
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
     public class Unit : Info, IUnit
     {

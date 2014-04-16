@@ -12,10 +12,8 @@ namespace ProjNet.CoordinateSystems.Projections
     /// <summary>
     /// 
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     internal class PolyconicProjection : MapProjection
     {

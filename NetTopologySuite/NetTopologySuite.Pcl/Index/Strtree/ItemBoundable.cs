@@ -7,19 +7,19 @@ namespace NetTopologySuite.Index.Strtree
     /// Boundable wrapper for a non-Boundable spatial object. Used internally by
     /// AbstractSTRtree.
     /// </summary>
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if PCL
     [System.Runtime.Serialization.DataContract]
 #else
     [Serializable]
 #endif
     public class ItemBoundable<T, TItem> : IBoundable<T, TItem> where T : IIntersectable<T>, IExpandable<T>
     {
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
-        [System.Runtime.Serialization.DataMember(Name="Bounds")]
+#if PCL
+    [System.Runtime.Serialization.DataMember(Name="Bounds")]
 #endif
         private readonly T _bounds;
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
-        [System.Runtime.Serialization.DataMember(Name = "Item")]
+#if PCL
+    [System.Runtime.Serialization.DataMember(Name = "Item")]
 #endif
     private readonly TItem _item;
 

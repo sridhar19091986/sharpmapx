@@ -6,7 +6,7 @@ using System.Xml;
 using GeoAPI.Geometries;
 using NetTopologySuite.Utilities;
 
-#if SILVERLIGHT || PCL || WINDOWS_PHONE
+#if PCL
 using XmlTextWriter = System.Xml.XmlWriter;
 using XmlTextReader = System.Xml.XmlReader;
 #endif
@@ -45,7 +45,7 @@ namespace NetTopologySuite.IO.GML2
             using (Stream stream = new MemoryStream(data))
                 Write(geometry, stream);
             Stream outStream = new MemoryStream(data);
-#if SILVERLIGHT || PCL || WINDOWS_PHONE
+#if PCL
             return XmlTextReader.Create(outStream);
 #else
             return new XmlTextReader(outStream);
@@ -60,7 +60,7 @@ namespace NetTopologySuite.IO.GML2
         public void Write(IGeometry geometry, Stream stream)
         {
             XmlTextWriter writer;
-#if SILVERLIGHT || PCL || WINDOWS_PHONE
+#if PCL
 
             XmlWriterSettings settings = null;
             settings =new XmlWriterSettings(){NamespaceHandling = NamespaceHandling.OmitDuplicates,Indent=true};
@@ -71,7 +71,7 @@ namespace NetTopologySuite.IO.GML2
 
             writer.WriteStartElement(GMLElements.gmlPrefix, "GML", GMLElements.gmlNS);
 
-#if !SILVERLIGHT || PCL || WINDOWS_PHONE
+#if !PCL
             //writer.Formatting = Formatting.Indented;
 #endif
             Write(geometry, writer);

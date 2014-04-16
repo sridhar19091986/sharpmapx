@@ -26,13 +26,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// A 2D cartographic coordinate system.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class ProjectedCoordinateSystem : HorizontalCoordinateSystem,  IProjectedCoordinateSystem
+    public class ProjectedCoordinateSystem : HorizontalCoordinateSystem,  IProjectedCoordinateSystem
 	{
 		/// <summary>
 		/// Initializes a new instance of a projected coordinate system

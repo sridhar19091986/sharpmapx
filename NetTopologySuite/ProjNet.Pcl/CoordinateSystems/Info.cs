@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 	/// <summary>
 	/// The Info object defines the standard information
 	/// stored with spatial reference objects
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public abstract class Info : IInfo
+    public abstract class Info : IInfo
 	{
 		/// <summary>
 		/// A base interface for metadata applicable to coordinate system objects.

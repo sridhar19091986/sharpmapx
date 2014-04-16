@@ -9,7 +9,7 @@ namespace NetTopologySuite.Index.Quadtree
     /// items which have a spatial extent corresponding to the node's position
     /// in the quadtree.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]
@@ -46,9 +46,18 @@ namespace NetTopologySuite.Index.Quadtree
             return largerNode;
         }
 
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private readonly Envelope _env;
         //private readonly Coordinate _centre;
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private readonly double _centreX, _centreY;
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private readonly int _level;
 
         /// <summary>

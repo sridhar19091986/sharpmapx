@@ -1,11 +1,8 @@
 using System;
-//using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using GeoAPI.Geometries;
 using GeoAPI.IO;
-//using NetTopologySuite.Geometries;
-//using NetTopologySuite.Utilities;
 using RTools_NTS.Util;
 
 namespace NetTopologySuite.IO
@@ -41,8 +38,6 @@ namespace NetTopologySuite.IO
     {
         private ICoordinateSequenceFactory _coordinateSequencefactory;
         private IPrecisionModel _precisionModel;
-
-        //int _index;
 
         private static readonly System.Globalization.CultureInfo InvariantCulture =
             System.Globalization.CultureInfo.InvariantCulture;
@@ -446,7 +441,7 @@ namespace NetTopologySuite.IO
             }
 
             var factory = GeoAPI.GeometryServiceProvider.Instance.CreateGeometryFactory(_precisionModel, srid,
-                                                                                        _coordinateSequencefactory);
+                _coordinateSequencefactory);
 
             if (type.Equals("POINT"))
                 returned = ReadPointText(tokens, factory);

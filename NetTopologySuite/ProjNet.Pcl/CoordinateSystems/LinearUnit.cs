@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// Definition of linear units.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class LinearUnit : Info, ILinearUnit
+    public class LinearUnit : Info, ILinearUnit
 	{
 		/// <summary>
 		/// Creates an instance of a linear unit

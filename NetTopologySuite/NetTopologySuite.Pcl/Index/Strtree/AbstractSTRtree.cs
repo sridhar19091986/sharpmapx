@@ -16,10 +16,11 @@ namespace NetTopologySuite.Index.Strtree
     /// data, both of which are treated as <see cref="IBoundable{T, TItem}"/>s.
     /// </para>
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]
+    [System.Runtime.Serialization.KnownType("GetKnownTypes")]
 #endif
     public abstract class AbstractSTRtree<T, TItem>
         where T: IIntersectable<T>, IExpandable<T>
@@ -41,16 +42,40 @@ namespace NetTopologySuite.Index.Strtree
             bool Intersects(T aBounds, T bBounds);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+#if PCL
+        private static Type[] GetKnownTypes()
+        {
+            return new [] { typeof(T), typeof(TItem), typeof(AbstractNode<T, TItem>), typeof(ItemBoundable<T, TItem>)};
+        }
+#endif
+
+
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private readonly object _buildLock = new object();
+
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private volatile AbstractNode<T, TItem> _root;
+
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private volatile bool _built, _building;
+
         /**
          * Set to <tt>null</tt> when index is built, to avoid retaining memory.
          */
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private List<IBoundable<T, TItem>> _itemBoundables = new List<IBoundable<T,TItem>>();
+
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private readonly int _nodeCapacity;
 
         /// <summary> 

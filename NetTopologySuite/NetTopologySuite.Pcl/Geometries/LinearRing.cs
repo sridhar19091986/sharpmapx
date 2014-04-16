@@ -18,7 +18,7 @@ namespace NetTopologySuite.Geometries
     /// If these conditions are not met, the constructors throw
     /// an <see cref="ArgumentException"/></para>
     /// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]

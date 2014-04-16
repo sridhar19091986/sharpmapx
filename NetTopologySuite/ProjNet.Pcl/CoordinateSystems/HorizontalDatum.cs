@@ -24,13 +24,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// Horizontal datum defining the standard datum information.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class HorizontalDatum : Datum, IHorizontalDatum
+    public class HorizontalDatum : Datum, IHorizontalDatum
 	{
 		/// <summary>
 		/// Initializes a new instance of a horizontal datum

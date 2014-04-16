@@ -23,13 +23,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// A named parameter value.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class Parameter
+    public class Parameter
 	{
 		/// <summary>
 		/// Creates an instance of a parameter

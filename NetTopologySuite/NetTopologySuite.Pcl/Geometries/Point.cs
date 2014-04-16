@@ -16,7 +16,7 @@ namespace NetTopologySuite.Geometries
     /// </list>
     /// </summary>
     /// 
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
+#if !PCL
     [Serializable]
 #else
     [System.Runtime.Serialization.DataContract]
@@ -33,6 +33,9 @@ namespace NetTopologySuite.Geometries
         /// <summary>  
         /// The <c>Coordinate</c> wrapped by this <c>Point</c>.
         /// </summary>
+#if PCL
+        [System.Runtime.Serialization.DataMember]
+#endif
         private ICoordinateSequence _coordinates;        
 
         /// <summary>

@@ -52,13 +52,11 @@ namespace ProjNet.CoordinateSystems.Projections
 	/// This projection is "conformal" in the sense that lines of latitude and longitude, 
 	/// which are perpendicular to one another on the earth's surface, are also perpendicular
 	/// to one another in the projected domain.</para>
-	/// </remarks>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </remarks>
+#if !PCL 
+    [Serializable] 
 #endif
-	internal class LambertConformalConic2SP : MapProjection
+    internal class LambertConformalConic2SP : MapProjection
 	{
 	
 		//double _falseEasting;

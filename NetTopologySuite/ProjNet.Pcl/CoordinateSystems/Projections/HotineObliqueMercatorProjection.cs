@@ -5,10 +5,8 @@ using GeoAPI.CoordinateSystems.Transformations;
 
 namespace ProjNet.CoordinateSystems.Projections
 {
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     internal class ObliqueMercatorProjection : HotineObliqueMercatorProjection
     {
@@ -32,10 +30,8 @@ namespace ProjNet.CoordinateSystems.Projections
         }
     }
 
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     internal class HotineObliqueMercatorProjection : MapProjection
     {

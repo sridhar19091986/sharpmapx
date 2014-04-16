@@ -25,13 +25,11 @@ namespace ProjNet.CoordinateSystems
 {
 	/// <summary>
 	/// A 3D coordinate system, with its origin at the center of the Earth.
-	/// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+    /// </summary>
+#if !PCL 
+    [Serializable] 
 #endif
-	public class GeocentricCoordinateSystem : CoordinateSystem, IGeocentricCoordinateSystem
+    public class GeocentricCoordinateSystem : CoordinateSystem, IGeocentricCoordinateSystem
 	{
 		internal GeocentricCoordinateSystem(IHorizontalDatum datum, ILinearUnit linearUnit, IPrimeMeridian primeMeridian, List<AxisInfo> axisinfo,
 			string name, string authority, long code, string alias, 

@@ -47,10 +47,8 @@ namespace ProjNet.CoordinateSystems.Projections
     /// <summary>
     /// Projections inherit from this abstract class to get access to useful mathematical functions.
     /// </summary>
-#if !(PCL || SILVERLIGHT || WINDOWS_PHONE)
-    [Serializable]
-#else
-    [System.Runtime.Serialization.DataContract]
+#if !PCL 
+    [Serializable] 
 #endif
     public abstract class MapProjection : MathTransform, IProjection
     {

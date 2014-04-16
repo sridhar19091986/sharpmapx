@@ -6,7 +6,7 @@ using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
 using NetTopologySuite.Utilities;
 
-#if (SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if PCL
 using XmlTextWriter = System.Xml.XmlWriter;
 using XmlTextReader = System.Xml.XmlReader;
 using System.Xml.Linq;
@@ -49,7 +49,7 @@ namespace NetTopologySuite.IO.GML2
         /// </summary>
         /// <param name="document"></param>
         /// <returns></returns>
-#if !(SILVERLIGHT || PCL || WINDOWS_PHONE)
+#if !PCL
         public IGeometry Read(XmlDocument document)
         {
             return Read(document.InnerXml);
