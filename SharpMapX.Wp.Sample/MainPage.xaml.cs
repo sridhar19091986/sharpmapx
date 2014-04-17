@@ -130,11 +130,14 @@ namespace SharpMapX.Wp.Sample
 
         void GetFeatureInfoCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            System.Windows.Deployment.Current.Dispatcher.BeginInvoke(() =>
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
             {
                 try
                 {
-                    var gl = new GMLLayer();
+                    var reader = new GMLProvider(e.Result);
+                    var geometries = reader.Features;
+
+                    //TODO: create a grid and show the properties of geometries
                     var dialog = new ShowFeatureDlg();
                     dialog.Show(e.Result);
                     Popup optionsScreen;
@@ -143,11 +146,6 @@ namespace SharpMapX.Wp.Sample
                     optionsScreen.IsOpen = true;
                     optionsScreen.VerticalOffset = 100;
                     optionsScreen.HorizontalOffset = 25;
-
-                    return;
-                    SharpMap.GMLUtils.GMLProvider reader = new SharpMap.GMLUtils.GMLProvider(e.Result, gl);
-                    var geometries = reader.Features;
-
                 }
                 catch (Exception ex)
                 {

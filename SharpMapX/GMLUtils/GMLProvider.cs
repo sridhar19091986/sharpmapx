@@ -124,19 +124,52 @@ namespace SharpMap.GMLUtils
         /// <param name="layer">Layer of gml shapes are part</param>
         public GMLProvider(string gml, GMLLayer layer)
         {
-            _features = new GMLShapeList();
-            var _featTypeInfo = new FeatTypeInfo();
-            _featTypeInfo.Name = ExtractLayerName(gml);
-
             _gmlLayer = layer;
             if (_gmlLayer == null)
-                throw new Exception("Unable to find layer: " + _featTypeInfo.Name);
+                throw new ArgumentNullException("layer");
+
+            _features = new GMLShapeList();
 
             string geometryTypeString = _gmlLayer.GetShapeTypeAsGML();
-            _featTypeInfo.Geometry._GeometryType = geometryTypeString;
+            PopulateFeatures(gml, geometryTypeString);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GMLProvider"/>
+        /// </summary>
+        /// <param name="gml">GML string.</param>
+        public GMLProvider(string gml)
+        {
+            _features = new GMLShapeList();
+
+            var geometryTypeString = GMLProvider.DetectGeometryType(gml);
+            PopulateFeatures(gml, geometryTypeString);
+        }
+
+        private List<String> GetFieldNames(GMLLayer layer)
+        {
+            var result  = new List<string>();
+            foreach (var f in layer.Fields)
+            {
+                result.Add(f.Name);    
+            }
+            return result;
+        }
+
+        private void PopulateFeatures(string gml, string geometryTypeString)
+        {
+            var featTypeInfo = new FeatTypeInfo();
+            featTypeInfo.Name = ExtractLayerName(gml);
+            featTypeInfo.Geometry._GeometryType = geometryTypeString;
 
             GeometryFactory geomFactory = null;
             Collection<GMLShape> shapes = null;
+
+            //if GMLLayer is provided, get the fields from it
+            //otherwise I'll get fields from first ParseProperties
+            var fieldNames = new List<string>();
+            if (_gmlLayer != null)
+                fieldNames = GetFieldNames(_gmlLayer);
 
             var xmlReaderSettings = new XmlReaderSettings();
             xmlReaderSettings.IgnoreComments = true;
@@ -155,27 +188,27 @@ namespace SharpMap.GMLUtils
 
                     // GML2
                     case "PointPropertyType":
-                        geomFactory = new PointFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new PointFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML2
                     case "LineStringPropertyType":
-                        geomFactory = new LineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new LineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML2
                     case "PolygonPropertyType":
-                        geomFactory = new PolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new PolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML3
                     case "CurvePropertyType":
-                        geomFactory = new LineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new LineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML3
                     case "SurfacePropertyType":
-                        geomFactory = new PolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new PolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     /* Aggregate geometry elements */
@@ -183,46 +216,46 @@ namespace SharpMap.GMLUtils
                     // GML2
                     case "MultiPointPropertyType":
                         if (_MultiGeometries)
-                            geomFactory = new MultiPointFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new MultiPointFactory(_XmlReader, featTypeInfo, fieldNames);
                         else
-                            geomFactory = new PointFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new PointFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML2
                     case "MultiLineStringPropertyType":
                         if (_MultiGeometries)
-                            geomFactory = new MultiLineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new MultiLineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         else
-                            geomFactory = new LineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new LineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML2
                     case "MultiPolygonPropertyType":
                         if (_MultiGeometries)
-                            geomFactory = new MultiPolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new MultiPolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         else
-                            geomFactory = new PolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new PolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML3
                     case "MultiCurvePropertyType":
                         if (_MultiGeometries)
-                            geomFactory = new MultiLineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new MultiLineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         else
-                            geomFactory = new LineStringFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new LineStringFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     // GML3
                     case "MultiSurfacePropertyType":
                         if (_MultiGeometries)
-                            geomFactory = new MultiPolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new MultiPolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         else
-                            geomFactory = new PolygonFactory(_XmlReader, _featTypeInfo, _gmlLayer);
+                            geomFactory = new PolygonFactory(_XmlReader, featTypeInfo, fieldNames);
                         break;
 
                     default:
                         //TODO: non funziona
-                        geomFactory = new UnspecifiedGeometryFactory_WFS1_0_0_GML2(_XmlReader, _featTypeInfo, _gmlLayer);
+                        geomFactory = new UnspecifiedGeometryFactory_WFS1_0_0_GML2(_XmlReader, featTypeInfo, fieldNames);
                         shapes = geomFactory.createGeometries();
                         break;
                 }
@@ -231,7 +264,7 @@ namespace SharpMap.GMLUtils
                     shapes = geomFactory.createGeometries();
 
                 _featuresBoundingBox = geomFactory.FeaturesBoundingBox;
-                _features.Name = _gmlLayer.Name;
+                _features.Name = featTypeInfo.Name;
 
                 foreach (GMLShape feature in shapes)
                 {
@@ -243,8 +276,6 @@ namespace SharpMap.GMLUtils
                 geomFactory.Dispose();
             }
         }
-
-
         #endregion
 
         #region IProvider Members

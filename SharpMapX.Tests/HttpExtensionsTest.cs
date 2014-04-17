@@ -7,7 +7,7 @@ using System.Net;
 using NUnit.Framework;
 using Portable.Http;
 
-namespace SharpMap.Tests
+namespace SharpMapX.Tests
 {
     [TestFixture]
     public class HttpExtensionsTest

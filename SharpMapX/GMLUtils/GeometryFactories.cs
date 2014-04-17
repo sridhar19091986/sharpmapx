@@ -211,7 +211,8 @@ namespace SharpMap.GMLUtils
         private string _Ts;
         protected XmlReader _xmlReader;
 
-        protected GMLLayer _gmllayer;
+//        protected GMLLayer _gmllayer;
+        protected List<string> _fieldNames;
         #endregion
 
         #region Constructors
@@ -223,11 +224,12 @@ namespace SharpMap.GMLUtils
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
         /// <param name="layer">Layer</param>
-        protected GeometryFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
+        protected GeometryFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldNames)
         {
             _featureTypeInfo = featureTypeInfo;
             _xmlReader = xmlReader;
-            _gmllayer = layer;
+            //_gmllayer = layer;
+            _fieldNames = fieldNames;
             initializePathNodes();
             initializeSeparators();
         }
@@ -319,9 +321,11 @@ namespace SharpMap.GMLUtils
         /// <returns>A list of values</returns>
         protected List<string> ParseProperties(XmlReader reader, out bool isSelected, out int uid)
         {
-            List<string> res = new List<string>();
+            var res = new List<string>();
 
             bool fidDone = false;
+            bool getFieldNames = _fieldNames.Count == 0;
+
             uid = 0;
             isSelected = false;
 
@@ -353,6 +357,11 @@ namespace SharpMap.GMLUtils
                         {
                             string value = reader.ReadElementContentAsString();
                             res.Add(value);
+
+                            if (getFieldNames)
+                            {
+                                _fieldNames.Add(reader.LocalName);
+                            }
 
                             if ((reader.EOF) || (reader.LocalName == "GEOMETRY"))
                                 return res;
@@ -496,7 +505,7 @@ namespace SharpMap.GMLUtils
         {
             for (int i = 0; i < fieldvalues.Count; i++)
             {
-                shp[_gmllayer.Fields[i].Name] = fieldvalues[i];
+                shp[_fieldNames[i]] = fieldvalues[i];
             }
         }
     }
@@ -515,8 +524,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        public PointFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        public PointFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
             _featureNode.IsActive = false;
         }
@@ -555,7 +564,7 @@ namespace SharpMap.GMLUtils
                         }
 
                         Coordinate c = ParseCoordinates(_geomReader)[0];
-                        GMLShape shp = _gmllayer.CreateShape(new Point(c));
+                        var shp = new GMLShape(new Point(c));
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         _shapes.Add(shp);
@@ -589,8 +598,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal LineStringFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal LineStringFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
             _featureNode.IsActive = false;
         }
@@ -624,7 +633,7 @@ namespace SharpMap.GMLUtils
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, lineStringNode, _CoordinatesNode);
 
                         LineString l = new LineString(ParseCoordinates(_geomReader));
-                        GMLShape shp = _gmllayer.CreateShape(l);
+                        var shp = new GMLShape(l);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         _shapes.Add(shp);
@@ -657,8 +666,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal PolygonFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal PolygonFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
             _featureNode.IsActive = false;
         }
@@ -718,7 +727,7 @@ namespace SharpMap.GMLUtils
                             holes.Add(new LinearRing(ParseCoordinates(innerBoundariesReader)));
 
                         Polygon polygon = new Polygon(shell, holes.ToArray());
-                        shp = _gmllayer.CreateShape(polygon);
+                        shp = new GMLShape(polygon);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         
@@ -751,8 +760,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal MultiPointFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal MultiPointFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
         }
 
@@ -787,7 +796,7 @@ namespace SharpMap.GMLUtils
 
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiPointNode, pointMemberNode);
 
-                        GeometryFactory geomFactory = new PointFactory(_geomReader, _featureTypeInfo, _gmllayer);
+                        GeometryFactory geomFactory = new PointFactory(_geomReader, _featureTypeInfo, _fieldNames);
                         Collection<GMLShape> shapePoints = geomFactory.createGeometries();
 
                         var points = new List<IPoint>();
@@ -797,7 +806,7 @@ namespace SharpMap.GMLUtils
                         }
 
                         MultiPoint multiPoint = new MultiPoint(points.ToArray());
-                        shp = _gmllayer.CreateShape(multiPoint);
+                        shp = new GMLShape(multiPoint);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -831,8 +840,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal MultiLineStringFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal MultiLineStringFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
         }
 
@@ -871,7 +880,7 @@ namespace SharpMap.GMLUtils
 
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiLineStringNodeAlt, lineStringMemberNodeAlt);
 
-                        GeometryFactory geomFactory = new LineStringFactory(_geomReader, _featureTypeInfo, _gmllayer);
+                        GeometryFactory geomFactory = new LineStringFactory(_geomReader, _featureTypeInfo, _fieldNames);
                         Collection<GMLShape> shpLineStrings = geomFactory.createGeometries();
 
                         var lineStrings = new List<ILineString>();
@@ -882,7 +891,7 @@ namespace SharpMap.GMLUtils
                         }
                         
                         MultiLineString multiLineString = new MultiLineString(lineStrings.ToArray());
-                        shp = _gmllayer.CreateShape(multiLineString);
+                        shp = new GMLShape(multiLineString);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -916,8 +925,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal MultiPolygonFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal MultiPolygonFactory(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
         }
 
@@ -957,7 +966,7 @@ namespace SharpMap.GMLUtils
 
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiPolygonNodeAlt, polygonMemberNodeAlt);
 
-                        GeometryFactory geomFactory = new PolygonFactory(_geomReader, _featureTypeInfo, _gmllayer);
+                        GeometryFactory geomFactory = new PolygonFactory(_geomReader, _featureTypeInfo, _fieldNames);
                         Collection<GMLShape> shpPolygons = geomFactory.createGeometries();
 
                         var polygons = new List<IPolygon>();
@@ -968,7 +977,7 @@ namespace SharpMap.GMLUtils
                         }
 
                         MultiPolygon multiPolygon = new MultiPolygon(polygons.ToArray());
-                        shp = _gmllayer.CreateShape(multiPolygon);
+                        shp = new GMLShape(multiPolygon);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -1010,8 +1019,8 @@ namespace SharpMap.GMLUtils
         /// </summary>
         /// <param name="xmlReader">An XmlReader instance</param>
         /// <param name="featureTypeInfo">A <see cref="FeatTypeInfo"/> instance providing metadata of the featuretype to query</param>
-        internal UnspecifiedGeometryFactory_WFS1_0_0_GML2(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, GMLLayer layer)
-            : base(xmlReader, featureTypeInfo, layer)
+        internal UnspecifiedGeometryFactory_WFS1_0_0_GML2(XmlReader xmlReader, FeatTypeInfo featureTypeInfo, List<string> fieldnames)
+            : base(xmlReader, featureTypeInfo, fieldnames)
         {
             _featureNode.IsActive = false;
         }
@@ -1053,19 +1062,19 @@ namespace SharpMap.GMLUtils
                     {
                         if (multiPointNode.Matches(_xmlReader))
                         {
-                            geomFactory = new MultiPointFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                            geomFactory = new MultiPointFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                             geometryTypeString = "MultiPointPropertyType";
                             break;
                         }
                         if (multiLineStringNodeAlt.Matches(_xmlReader))
                         {
-                            geomFactory = new MultiLineStringFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                            geomFactory = new MultiLineStringFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                             geometryTypeString = "MultiLineStringPropertyType";
                             break;
                         }
                         if (multiPolygonNodeAlt.Matches(_xmlReader))
                         {
-                            geomFactory = new MultiPolygonFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                            geomFactory = new MultiPolygonFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                             geometryTypeString = "MultiPolygonPropertyType";
                             break;
                         }
@@ -1073,20 +1082,20 @@ namespace SharpMap.GMLUtils
 
                     if (pointNode.Matches(_xmlReader))
                     {
-                        geomFactory = new PointFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                        geomFactory = new PointFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                         geometryTypeString = "PointPropertyType";
                         _featureTypeInfo.Geometry._GeometryType = "PointPropertyType";
                         break;
                     }
                     if (lineStringNode.Matches(_xmlReader))
                     {
-                        geomFactory = new LineStringFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                        geomFactory = new LineStringFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                         geometryTypeString = "LineStringPropertyType";
                         break;
                     }
                     if (polygonNode.Matches(_xmlReader))
                     {
-                        geomFactory = new PolygonFactory(_xmlReader, _featureTypeInfo, _gmllayer);
+                        geomFactory = new PolygonFactory(_xmlReader, _featureTypeInfo, _fieldNames);
                         geometryTypeString = "PolygonPropertyType";
                         break;
                     }

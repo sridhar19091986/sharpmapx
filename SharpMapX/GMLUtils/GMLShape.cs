@@ -21,6 +21,16 @@ namespace SharpMap.GMLUtils
 
     public class GMLShape
     {
+        public GMLShape()
+        {
+            
+        }
+
+        public GMLShape(IGeometry geometry)
+        {
+            this.Geometry = geometry;
+        }
+
         public IGeometry Geometry { get; set; }
 
         private Dictionary<string, string> _data = new Dictionary<string, string>();

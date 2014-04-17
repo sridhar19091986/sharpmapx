@@ -25,3 +25,5 @@ NetTopologySuite/GeoAPI.Pcl/bin/
 NetTopologySuite/NetTopologySuite.Encodings/bin
 NetTopologySuite/NetTopologySuite.Encodings/obj
 NetTopologySuite/NetTopologySuite.Pcl/bin
+*.user
+Cratos.sln
