@@ -4,29 +4,16 @@
 using System.Collections.Generic;
 using GeoAPI.Geometries;
 
-namespace SharpMap.GMLUtils
+namespace SharpMap.Entities
 {
-    public enum GMLShapeType
+    public class GisShape
     {
-          gisShapeTypeUnknown,
-          gisShapeTypeDeleted,
-          gisShapeTypePoint,
-          gisShapeTypeMultiPoint,
-          gisShapeTypeArc,
-          gisShapeTypePolygon,
-          gisShapeTypeComplex,
-          gisShapeTypeNull
-    }
-
-
-    public class GMLShape
-    {
-        public GMLShape()
+        public GisShape()
         {
             
         }
 
-        public GMLShape(IGeometry geometry)
+        public GisShape(IGeometry geometry)
         {
             this.Geometry = geometry;
         }
@@ -66,15 +53,5 @@ namespace SharpMap.GMLUtils
 
         public bool IsSelected { get; set; }
         public int UID { get; set; }
-    }
-
-    public class GMLShapeList : List<GMLShape>
-    {
-        public string Name { get; set; }
-        
-        public GMLShape New()
-        {
-            return new GMLShape();
-        }
     }
 }

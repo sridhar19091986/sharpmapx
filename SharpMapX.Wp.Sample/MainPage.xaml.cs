@@ -134,7 +134,7 @@ namespace SharpMapX.Wp.Sample
             {
                 try
                 {
-                    var reader = new GMLProvider(e.Result);
+                    var reader = new GmlProvider(e.Result);
                     var geometries = reader.Features;
 
                     //TODO: create a grid and show the properties of geometries

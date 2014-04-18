@@ -37,6 +37,9 @@
     <Folder Include="Providers\Tiling\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\GeoJSON\GeoJSON.cs" />
+    <Compile Include="Converters\GeoJSON\GeoJSONWriter.cs" />
+    <Compile Include="Converters\SpatiaLite\GeometryFromSpatiaLite.cs" />
     <Compile Include="Converters\WellKnownBinary\GeometryFromWKB.cs" />
     <Compile Include="Converters\WellKnownBinary\GeometryToWKB.cs" />
     <Compile Include="Converters\WellKnownBinary\WKBByteOrder.cs" />
@@ -46,6 +49,14 @@
     <Compile Include="Converters\WellKnownText\StreamTokenizer.cs" />
     <Compile Include="Converters\WellKnownText\TokenType.cs" />
     <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
+    <Compile Include="CoordinateSystems\Trasformations\GeometryTransform.cs" />
+    <Compile Include="CoordinateSystems\Trasformations\GeometryTransformDotSpatial.cs" />
+    <Compile Include="Geometries\GeometriesExtensions.cs" />
+    <Compile Include="Entities\GisShapeCollection.cs" />
+    <Compile Include="Entities\GisShapeType.cs" />
+    <Compile Include="Geometries\ScreenPoint.cs" />
+    <Compile Include="Geometries\ScreenPointF.cs" />
+    <Compile Include="Geometries\GeoAPIEx.cs" />
     <Compile Include="Layers\ILayer.cs" />
     <Compile Include="Layers\IQueryLayer.cs" />
     <Compile Include="Layers\LabelLayer.cs" />
@@ -54,13 +65,13 @@
     <Compile Include="Map\IView.cs" />
     <Compile Include="Map\IViewTransform.cs" />
     <Compile Include="Map\Map.cs" />
+    <Compile Include="Map\MapViewportGuard.cs" />
     <Compile Include="Map\View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GMLUtils\GeometryFactories.cs" />
-    <Compile Include="GMLUtils\GMLLayer.cs" />
-    <Compile Include="GMLUtils\GMLProvider.cs" />
-    <Compile Include="GMLUtils\GMLShape.cs" />
-    <Compile Include="GMLUtils\PathNode.cs" />
+    <Compile Include="GmlUtils\GeometryFactories.cs" />
+    <Compile Include="GmlUtils\GmlProvider.cs" />
+    <Compile Include="Entities\GisShape.cs" />
+    <Compile Include="GmlUtils\PathNode.cs" />
     <Compile Include="Projection\ProjectionHelper.cs" />
     <Compile Include="Providers\Features.cs" />
     <Compile Include="Providers\IProvider.cs" />
@@ -86,8 +97,12 @@
     <Compile Include="Styles\Style.cs" />
     <Compile Include="Styles\VectorStyle.cs" />
     <Compile Include="Utilities\Algorithms.cs" />
+    <Compile Include="Utilities\CGAlgoritm.cs" />
+    <Compile Include="Utilities\GeoSpatialMath.cs" />
     <Compile Include="Utilities\LeastSquaresTransform.cs" />
+    <Compile Include="Utilities\LineOffset.cs" />
     <Compile Include="Utilities\Providers.cs" />
+    <Compile Include="Utilities\Transform.cs" />
     <Compile Include="Utilities\Version.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +133,11 @@
   <ItemGroup>
     <Content Include="License.txt" />
     <Content Include="readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\libs\Json.Net\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

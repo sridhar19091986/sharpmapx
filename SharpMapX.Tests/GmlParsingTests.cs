@@ -20,7 +20,7 @@ namespace SharpMapX.Tests
                 gml = reader.ReadToEnd();
             }
 
-            var provider = new SharpMap.GMLUtils.GMLProvider(gml);
+            var provider = new SharpMap.GMLUtils.GmlProvider(gml);
             var geometries = provider.Features;
             Assert.AreEqual("Streets", geometries.Name);
             Assert.AreEqual(9, geometries.Count);
@@ -39,7 +39,7 @@ namespace SharpMapX.Tests
                 gml = reader.ReadToEnd();
             }
 
-            var provider = new SharpMap.GMLUtils.GMLProvider(gml);
+            var provider = new SharpMap.GMLUtils.GmlProvider(gml);
             var geometries = provider.Features;
             Assert.AreEqual("streets", geometries.Name);
             Assert.AreEqual(87, geometries.Count);

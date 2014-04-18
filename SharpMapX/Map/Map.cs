@@ -21,6 +21,7 @@ using System.Text;
 using System.IO;
 using GeoAPI.Geometries;
 using System.Globalization;
+using NetTopologySuite.Geometries;
 using SharpMap.Rendering;
 using SharpMap.Styles;
 using SharpMap.Layers;
@@ -69,17 +70,29 @@ namespace SharpMap
         /// Used for converting numbers to/from strings
         /// </summary>
         internal static NumberFormatInfo numberFormat_EnUS = System.Globalization.CultureInfo.InvariantCulture.NumberFormat;
-        // <summary>
+
+        /// <summary>
         /// Initializes a new map
         /// </summary>
-        /// <param name="size"></param>
-        public Map()
+        public Map() : this(new Size(640, 480))
         {
+
+        }
+
+        /// <summary>
+        /// Initializes a new map
+        /// </summary>
+        /// <param name="size">Size of map in pixels</param>
+        public Map(Size size)
+        {
+            _mapViewportGuard = new MapViewPortGuard(size, 0d, Double.MaxValue);
             this.Layers = new List<SharpMap.Layers.ILayer>();
             this.BackColor = Color.White;
-            this._MaximumZoom = double.MaxValue;
-            this._MinimumZoom = 0;
         }
+
+        private double _zoom;
+        private MapViewPortGuard _mapViewportGuard;
+        private Coordinate _center;
 
         /// <summary>
         /// Disposes 
@@ -218,37 +231,149 @@ namespace SharpMap
             return bbox;
         }    
 
-        private Size _Size;
+        /// <summary>
+        /// Center of map in WCS
+        /// </summary>
+        public Coordinate Center
+        {
+            get { return _center; }
+            set
+            {
+                if (value == null)
+                    throw new ArgumentNullException("value");
 
-        private double _MinimumZoom;
+                var newZoom = _zoom;
+                var newCenter = new Coordinate(value);
+
+                newZoom = _mapViewportGuard.VerifyZoom(newZoom, newCenter);
+
+                var changed = false;
+                if (newZoom != _zoom)
+                {
+                    _zoom = newZoom;
+                    changed = true;
+                }
+
+                if (!newCenter.Equals2D(_center))
+                {
+                    _center = newCenter;
+                    changed = true;
+                }
+
+                if (changed && MapViewOnChange != null)
+                    MapViewOnChange();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the zoom level of map.
+        /// </summary>
+        /// <remarks>
+        /// <para>The zoom level corresponds to the width of the map in WCS units.</para>
+        /// <para>A zoomlevel of 0 will result in an empty map being rendered, but will not throw an exception</para>
+        /// </remarks>
+        public double Zoom
+        {
+            get { return _zoom; }
+            set
+            {
+                var newCenter = new Coordinate(_center);
+                value = _mapViewportGuard.VerifyZoom(value, newCenter);
+
+                if (value.Equals(_zoom))
+                    return;
+
+                _zoom = value;
+                if (!newCenter.Equals2D(_center))
+                    _center = newCenter;
+
+                if (MapViewOnChange != null)
+                    MapViewOnChange();
+            }
+        }
+
+        /// <summary>
+        /// Get Returns the size of a pixel in world coordinate units
+        /// </summary>
+        public double PixelSize
+        {
+            get { return Zoom / Size.Width; }
+        }
+
+        /// <summary>
+        /// Returns the width of a pixel in world coordinate units.
+        /// </summary>
+        /// <remarks>The value returned is the same as <see cref="PixelSize"/>.</remarks>
+        public double PixelWidth
+        {
+            get { return PixelSize; }
+        }
+
+        /// <summary>
+        /// Returns the height of a pixel in world coordinate units.
+        /// </summary>
+        /// <remarks>The value returned is the same as <see cref="PixelSize"/> unless <see cref="PixelAspectRatio"/> is different from 1.</remarks>
+        public double PixelHeight
+        {
+            get { return PixelSize * _mapViewportGuard.PixelAspectRatio; }
+        }
+
+        /// <summary>
+        /// Gets or sets the aspect-ratio of the pixel scales. A value less than 
+        /// 1 will make the map stretch upwards, and larger than 1 will make it smaller.
+        /// </summary>
+        /// <exception cref="ArgumentException">Throws an argument exception when value is 0 or less.</exception>
+        public double PixelAspectRatio
+        {
+            get { return _mapViewportGuard.PixelAspectRatio; }
+            set
+            {
+                _mapViewportGuard.PixelAspectRatio = value;
+            }
+        }
+
+        /// <summary>
+        /// Height of map in world units
+        /// </summary>
+        /// <returns></returns>
+        public double MapHeight
+        {
+            get { return (Zoom * Size.Height) / Size.Width * PixelAspectRatio; }
+        }
+
+        /// <summary>
+        /// Size of output map
+        /// </summary>
+        public Size Size
+        {
+            get { return _mapViewportGuard.Size; }
+            set { _mapViewportGuard.Size = value; }
+        }
 
         /// <summary>
         /// Minimum zoom amount allowed
         /// </summary>
         public double MinimumZoom
         {
-            get { return _MinimumZoom; }
-            set {
-                if (value < 0)
-                    throw (new System.Exception("Minimum zoom must be 0 or more"));
-                _MinimumZoom = value; 
+            get { return _mapViewportGuard.MinimumZoom; }
+            set
+            {
+                _mapViewportGuard.MinimumZoom = value;
             }
         }
-
-        private double _MaximumZoom;
 
         /// <summary>
         /// Maximum zoom amount allowed
         /// </summary>
         public double MaximumZoom
         {
-            get { return _MaximumZoom; }
-            set {
-                if (value <= 0)
-                    throw (new System.Exception("Maximum zoom must larger than 0"));
-                _MaximumZoom = value; 
+            get { return _mapViewportGuard.MaximumZoom; }
+            set
+            {
+                _mapViewportGuard.MaximumZoom = value;
             }
         }
+
 
         #endregion
 
