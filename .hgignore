@@ -27,3 +27,4 @@ NetTopologySuite/NetTopologySuite.Encodings/obj
 NetTopologySuite/NetTopologySuite.Pcl/bin
 *.user
 Cratos.sln
+_downloads/
