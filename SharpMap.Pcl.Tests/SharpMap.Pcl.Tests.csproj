@@ -60,7 +60,7 @@
       <Project>{83c6bf62-8939-42c8-adee-4b782b4f3cc5}</Project>
       <Name>Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpMapX\SharpMap.Pcl.csproj">
+    <ProjectReference Include="..\SharpMap.Pcl\SharpMap.Pcl.csproj">
       <Project>{aa00a1af-e07e-4266-80b9-edc13ea2dd35}</Project>
       <Name>SharpMap.Pcl</Name>
     </ProjectReference>

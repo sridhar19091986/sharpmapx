@@ -11,7 +11,7 @@ using GeoAPI.Geometries;
 using NetTopologySuite.Geometries;
 using SharpMap.Entities;
 
-namespace SharpMap.GMLUtils
+namespace SharpMap.GmlUtils
 {
     /// <summary>
     /// This class is the provider of GML maps file.

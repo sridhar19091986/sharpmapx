@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using NetTopologySuite.Geometries;
 using SharpMap.Entities;
 
-namespace SharpMap.GMLUtils
+namespace SharpMap.GmlUtils
 {
     internal class FeatTypeInfo
     {

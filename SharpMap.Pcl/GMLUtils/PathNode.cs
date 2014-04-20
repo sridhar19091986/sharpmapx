@@ -6,7 +6,7 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 
-namespace SharpMap.GMLUtils
+namespace SharpMap.GmlUtils
 {
     internal interface IPathNode
     {
