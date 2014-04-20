@@ -7,8 +7,8 @@
     <ProjectGuid>{7843E3FC-3564-4C2D-B05D-EB9CE89D21EB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpMapX.Tests</RootNamespace>
-    <AssemblyName>SharpMapX.Tests</AssemblyName>
+    <RootNamespace>SharpMap.Pcl.Tests</RootNamespace>
+    <AssemblyName>SharpMap.Pcl.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -60,9 +60,9 @@
       <Project>{83c6bf62-8939-42c8-adee-4b782b4f3cc5}</Project>
       <Name>Portable</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpMapX\SharpMapX.csproj">
+    <ProjectReference Include="..\SharpMapX\SharpMap.Pcl.csproj">
       <Project>{aa00a1af-e07e-4266-80b9-edc13ea2dd35}</Project>
-      <Name>SharpMapX</Name>
+      <Name>SharpMap.Pcl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

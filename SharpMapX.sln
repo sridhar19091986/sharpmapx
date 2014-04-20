@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTopologySuite.Pcl", "Net
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjNet.Pcl", "NetTopologySuite\ProjNet.Pcl\ProjNet.Pcl.csproj", "{33FAAD57-CDC6-4D4A-BE46-FBAB97B22508}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMapX", "SharpMapX\SharpMapX.csproj", "{AA00A1AF-E07E-4266-80B9-EDC13EA2DD35}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMap.Pcl", "SharpMap.Pcl\SharpMap.Pcl.csproj", "{AA00A1AF-E07E-4266-80B9-EDC13EA2DD35}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pcl", "Pcl", "{8932616D-1E10-4702-95F5-54DD1EECB044}"
 EndProject
@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portable", "Portable\Portab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portable.Net", "Portable.Net\Portable.Net.csproj", "{D37B8975-A4A3-4D3A-B7DA-9BD1C792C4C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMapX.Tests", "SharpMapX.Tests\SharpMapX.Tests.csproj", "{7843E3FC-3564-4C2D-B05D-EB9CE89D21EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMap.Pcl.Tests", "SharpMap.Pcl.Tests\SharpMap.Pcl.Tests.csproj", "{7843E3FC-3564-4C2D-B05D-EB9CE89D21EB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTopologySuite.Encodings", "NetTopologySuite\NetTopologySuite.Encodings\NetTopologySuite.Encodings.csproj", "{02CB4412-3CDB-4506-B48A-0D43C423E8CB}"
 EndProject

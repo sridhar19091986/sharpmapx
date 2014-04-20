@@ -11,7 +11,7 @@ namespace SharpMapX.Tests
         public void ParseSelectByRectangleMmsTest()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "SharpMapX.Tests.SampleData.selectbyrectangle_mms_sample.xml";
+            var resourceName = "SharpMap.Pcl.Tests.SampleData.selectbyrectangle_mms_sample.xml";
             string gml;
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))
@@ -30,7 +30,7 @@ namespace SharpMapX.Tests
         public void ParseGetFeaturesTest()
         {
             var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "SharpMapX.Tests.SampleData.getfeatures_sample.xml";
+            var resourceName = "SharpMap.Pcl.Tests.SampleData.getfeatures_sample.xml";
             string gml;
 
             using (Stream stream = assembly.GetManifestResourceStream(resourceName))

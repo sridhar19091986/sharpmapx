@@ -28,3 +28,5 @@ NetTopologySuite/NetTopologySuite.Pcl/bin
 *.user
 Cratos.sln
 _downloads/
+*/bin/
+*/obj/
