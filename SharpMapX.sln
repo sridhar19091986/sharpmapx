@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjNet.Pcl", "NetTopologyS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpMap.Pcl", "SharpMap.Pcl\SharpMap.Pcl.csproj", "{AA00A1AF-E07E-4266-80B9-EDC13EA2DD35}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pcl", "Pcl", "{8932616D-1E10-4702-95F5-54DD1EECB044}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetTopologySuite", "NetTopologySuite", "{8932616D-1E10-4702-95F5-54DD1EECB044}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portable", "Portable\Portable.csproj", "{83C6BF62-8939-42C8-ADEE-4B782B4F3CC5}"
 EndProject
