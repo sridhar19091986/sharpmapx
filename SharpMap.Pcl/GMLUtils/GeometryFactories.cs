@@ -205,7 +205,7 @@ namespace SharpMap.GmlUtils
         protected FeatTypeInfo _featureTypeInfo;
         protected XmlReader _geomReader;
 
-        protected Collection<GisShape> _shapes = new Collection<GisShape>();
+        protected Collection<SimpleGisShape> _shapes = new Collection<SimpleGisShape>();
 
         private IPathNode _labelNode = null;
         protected AlternativePathNodesCollection _serviceExceptionNode;
@@ -240,7 +240,7 @@ namespace SharpMap.GmlUtils
         /// Abstract method - overwritten by derived classes for producing instances
         /// derived from Geometry/>.
         /// </summary>
-        internal abstract Collection<GisShape> createGeometries();
+        internal abstract Collection<SimpleGisShape> createGeometries();
 
 
         #endregion
@@ -499,7 +499,7 @@ namespace SharpMap.GmlUtils
 
         #endregion
 
-        protected void FillShapeFields(GisShape shp, List<string> fieldvalues)
+        protected void FillShapeFields(SimpleGisShape shp, List<string> fieldvalues)
         {
             for (int i = 0; i < fieldvalues.Count; i++)
             {
@@ -537,7 +537,7 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type collection of <see cref="GIS_Shape"/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
             IPathNode pointNode = new PathNode(_GMLNS, "Point", (NameTable)_xmlReader.NameTable);
             string[] labelValue = new string[1];
@@ -562,7 +562,7 @@ namespace SharpMap.GmlUtils
                         }
 
                         Coordinate c = ParseCoordinates(_geomReader)[0];
-                        var shp = new GisShape(new Point(c));
+                        var shp = new SimpleGisShape(new Point(c));
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         _shapes.Add(shp);
@@ -610,7 +610,7 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type <see cref="LineString"/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
             IPathNode lineStringNode = new PathNode(_GMLNS, "LineString", (NameTable)_xmlReader.NameTable);
             string[] labelValue = new string[1];
@@ -631,7 +631,7 @@ namespace SharpMap.GmlUtils
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, lineStringNode, _CoordinatesNode);
 
                         LineString l = new LineString(ParseCoordinates(_geomReader));
-                        var shp = new GisShape(l);
+                        var shp = new SimpleGisShape(l);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         _shapes.Add(shp);
@@ -678,9 +678,9 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type Polygon/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
-            GisShape shp = null;
+            SimpleGisShape shp = null;
             XmlReader outerBoundaryReader = null;
             XmlReader innerBoundariesReader = null;
 
@@ -725,7 +725,7 @@ namespace SharpMap.GmlUtils
                             holes.Add(new LinearRing(ParseCoordinates(innerBoundariesReader)));
 
                         Polygon polygon = new Polygon(shell, holes.ToArray());
-                        shp = new GisShape(polygon);
+                        shp = new SimpleGisShape(polygon);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
                         
@@ -771,9 +771,9 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type <see cref="MultiPoint"/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
-            GisShape shp = null;
+            SimpleGisShape shp = null;
 
             IPathNode multiPointNode = new PathNode(_GMLNS, "MultiPoint", (NameTable)_xmlReader.NameTable);
             IPathNode pointMemberNode = new PathNode(_GMLNS, "pointMember", (NameTable)_xmlReader.NameTable);
@@ -795,7 +795,7 @@ namespace SharpMap.GmlUtils
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiPointNode, pointMemberNode);
 
                         GeometryFactory geomFactory = new PointFactory(_geomReader, _featureTypeInfo, _fieldNames);
-                        Collection<GisShape> shapePoints = geomFactory.createGeometries();
+                        Collection<SimpleGisShape> shapePoints = geomFactory.createGeometries();
 
                         var points = new List<IPoint>();
                         foreach (var shp1 in shapePoints)
@@ -804,7 +804,7 @@ namespace SharpMap.GmlUtils
                         }
 
                         MultiPoint multiPoint = new MultiPoint(points.ToArray());
-                        shp = new GisShape(multiPoint);
+                        shp = new SimpleGisShape(multiPoint);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -851,9 +851,9 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type <see cref="MultiLineString"/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
-            GisShape shp = null;
+            SimpleGisShape shp = null;
 
             IPathNode multiLineStringNode = new PathNode(_GMLNS, "MultiLineString", (NameTable)_xmlReader.NameTable);
             IPathNode multiCurveNode = new PathNode(_GMLNS, "MultiCurve", (NameTable)_xmlReader.NameTable);
@@ -879,7 +879,7 @@ namespace SharpMap.GmlUtils
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiLineStringNodeAlt, lineStringMemberNodeAlt);
 
                         GeometryFactory geomFactory = new LineStringFactory(_geomReader, _featureTypeInfo, _fieldNames);
-                        Collection<GisShape> shpLineStrings = geomFactory.createGeometries();
+                        Collection<SimpleGisShape> shpLineStrings = geomFactory.createGeometries();
 
                         var lineStrings = new List<ILineString>();
 
@@ -889,7 +889,7 @@ namespace SharpMap.GmlUtils
                         }
                         
                         MultiLineString multiLineString = new MultiLineString(lineStrings.ToArray());
-                        shp = new GisShape(multiLineString);
+                        shp = new SimpleGisShape(multiLineString);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -936,9 +936,9 @@ namespace SharpMap.GmlUtils
         /// This method produces instances of type <see cref="MultiPolygon"/>.
         /// </summary>
         /// <returns>The created geometries</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
-            GisShape shp = null;
+            SimpleGisShape shp = null;
 
             IPathNode multiPolygonNode = new PathNode(_GMLNS, "MultiPolygon", (NameTable)_xmlReader.NameTable);
             IPathNode multiSurfaceNode = new PathNode(_GMLNS, "MultiSurface", (NameTable)_xmlReader.NameTable);
@@ -965,7 +965,7 @@ namespace SharpMap.GmlUtils
                         _geomReader = GetSubReaderOf(_featureReader, labelValue, multiPolygonNodeAlt, polygonMemberNodeAlt);
 
                         GeometryFactory geomFactory = new PolygonFactory(_geomReader, _featureTypeInfo, _fieldNames);
-                        Collection<GisShape> shpPolygons = geomFactory.createGeometries();
+                        Collection<SimpleGisShape> shpPolygons = geomFactory.createGeometries();
 
                         var polygons = new List<IPolygon>();
 
@@ -975,7 +975,7 @@ namespace SharpMap.GmlUtils
                         }
 
                         MultiPolygon multiPolygon = new MultiPolygon(polygons.ToArray());
-                        shp = new GisShape(multiPolygon);
+                        shp = new SimpleGisShape(multiPolygon);
                         shp.IsSelected = isSelected;
                         shp.UID = uid;
 
@@ -1032,7 +1032,7 @@ namespace SharpMap.GmlUtils
         /// appropriate geometries.
         /// </summary>
         /// <returns>Collection of GIS elements</returns>
-        internal override Collection<GisShape> createGeometries()
+        internal override Collection<SimpleGisShape> createGeometries()
         {
             GeometryFactory geomFactory = null;
 

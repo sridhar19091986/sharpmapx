@@ -6,14 +6,14 @@ using GeoAPI.Geometries;
 
 namespace SharpMap.Entities
 {
-    public class GisShape
+    public class SimpleGisShape
     {
-        public GisShape()
+        public SimpleGisShape()
         {
             
         }
 
-        public GisShape(IGeometry geometry)
+        public SimpleGisShape(IGeometry geometry)
         {
             this.Geometry = geometry;
         }
@@ -39,7 +39,7 @@ namespace SharpMap.Entities
 
             set
             {
-                _data[key] = value.ToString();
+                _data[key] = value;
             }
         }
 

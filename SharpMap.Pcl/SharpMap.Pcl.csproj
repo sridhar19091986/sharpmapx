@@ -52,8 +52,6 @@
     <Compile Include="CoordinateSystems\Trasformations\GeometryTransform.cs" />
     <Compile Include="CoordinateSystems\Trasformations\GeometryTransformDotSpatial.cs" />
     <Compile Include="Geometries\GeometriesExtensions.cs" />
-    <Compile Include="Entities\GisShapeCollection.cs" />
-    <Compile Include="Entities\GisShapeType.cs" />
     <Compile Include="Geometries\ScreenPoint.cs" />
     <Compile Include="Geometries\ScreenPointF.cs" />
     <Compile Include="Geometries\GeoAPIEx.cs" />
@@ -70,7 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GmlUtils\GeometryFactories.cs" />
     <Compile Include="GmlUtils\GmlProvider.cs" />
-    <Compile Include="Entities\GisShape.cs" />
+    <Compile Include="Entities\SimpleGisShape.cs" />
     <Compile Include="GmlUtils\PathNode.cs" />
     <Compile Include="Projection\ProjectionHelper.cs" />
     <Compile Include="Providers\Features.cs" />

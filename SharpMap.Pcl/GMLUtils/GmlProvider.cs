@@ -20,7 +20,7 @@ namespace SharpMap.GmlUtils
     {
         #region Fields
 
-        private GisShapeCollection _features;
+        private List<SimpleGisShape> _features;
         private IEnvelope _featuresBoundingBox;
         private IList<String> _fieldNames;
 
@@ -42,7 +42,7 @@ namespace SharpMap.GmlUtils
         /// <summary>
         /// Returns the list of geometries
         /// </summary>
-        public GisShapeCollection Features
+        public List<SimpleGisShape> Features
         {
             get { return _features; }
         }
@@ -56,10 +56,10 @@ namespace SharpMap.GmlUtils
         /// <param name="geometries">Set of geometries that this datasource should contain</param>
         public GmlProvider(IEnumerable<IGeometry> geometries)
         {
-            _features = new GisShapeCollection();
+            _features = new List<SimpleGisShape>();
             foreach (IGeometry geometry in geometries)
             {
-                var feature = new GisShape(geometry);
+                var feature = new SimpleGisShape(geometry);
                 _features.Add(feature);
             }
         }
@@ -68,9 +68,9 @@ namespace SharpMap.GmlUtils
         /// Initializes a new instance of the <see cref="GmlProvider"/>
         /// </summary>
         /// <param name="feature">Feature to be included in this datasource</param>
-        public GmlProvider(GisShape feature)
+        public GmlProvider(SimpleGisShape feature)
         {
-            _features = new GisShapeCollection();
+            _features = new List<SimpleGisShape>();
             _features.Add(feature);
         }
 
@@ -78,7 +78,7 @@ namespace SharpMap.GmlUtils
         /// Initializes a new instance of the <see cref="GmlProvider"/>
         /// </summary>
         /// <param name="features">Features to be included in this datasource</param>
-        public GmlProvider(GisShapeCollection features)
+        public GmlProvider(List<SimpleGisShape> features)
         {
             _features = features;
         }
@@ -89,8 +89,8 @@ namespace SharpMap.GmlUtils
         /// <param name="geometry">Geometry to be in this datasource</param>
         public GmlProvider(Geometry geometry)
         {
-            _features = new GisShapeCollection();
-            var feature = new GisShape(geometry);
+            _features = new List<SimpleGisShape>();
+            var feature = new SimpleGisShape(geometry);
             _features.Add(feature);
         }
 
@@ -115,7 +115,7 @@ namespace SharpMap.GmlUtils
         /// <param name="fieldNames">Field names</param>
         public GmlProvider(string gml, IEnumerable<string> fieldNames)
         {
-            _features = new GisShapeCollection();
+            _features = new List<SimpleGisShape>();
             _fieldNames = new List<string>();
             ((List<String>)_fieldNames).AddRange(fieldNames);
             PopulateFeatures(gml);
@@ -127,7 +127,7 @@ namespace SharpMap.GmlUtils
         /// <param name="gml">GML string.</param>
         public GmlProvider(string gml)
         {
-            _features = new GisShapeCollection();
+            _features = new List<SimpleGisShape>();
             _fieldNames = new List<string>();
             PopulateFeatures(gml);
         }
@@ -141,7 +141,7 @@ namespace SharpMap.GmlUtils
             featTypeInfo.Geometry._GeometryType = geometryTypeString;
 
             GeometryFactory geomFactory = null;
-            Collection<GisShape> shapes = null;
+            Collection<SimpleGisShape> shapes = null;
 
             var xmlReaderSettings = new XmlReaderSettings();
             xmlReaderSettings.IgnoreComments = true;
@@ -236,9 +236,8 @@ namespace SharpMap.GmlUtils
                     shapes = geomFactory.createGeometries();
 
                 _featuresBoundingBox = geomFactory.FeaturesBoundingBox;
-                _features.Name = featTypeInfo.Name;
 
-                foreach (GisShape feature in shapes)
+                foreach (SimpleGisShape feature in shapes)
                 {
                     _features.Add(feature);
                 }
@@ -257,9 +256,9 @@ namespace SharpMap.GmlUtils
         /// </summary>
         /// <param name="box">Bounding box</param>
         /// <returns>List of shapes</returns>
-        public void PopulateFeaturesInView(Envelope box, GisShapeCollection results)
+        public void PopulateFeaturesInView(Envelope box, List<SimpleGisShape> results)
         {
-            foreach (GisShape feature in _features)
+            foreach (SimpleGisShape feature in _features)
             {
                 if (feature.Geometry.EnvelopeInternal.Intersects(box))
                 {
