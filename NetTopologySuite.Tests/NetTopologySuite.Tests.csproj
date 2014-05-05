@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1B0F5146-490F-40B3-A95D-9098D2D7D8C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetTopologySuite.Tests</RootNamespace>
+    <AssemblyName>NetTopologySuite.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\libs\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NetTopologySuiteShapeFileTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SharpMapX\NetTopologySuite\GeoAPI.Pcl\GeoAPI.Pcl.csproj">
+      <Project>{92b3b84b-50f1-4147-8b97-d93b90fa5514}</Project>
+      <Name>GeoAPI.Pcl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetTopologySuite.Data\NetTopologySuite.Data.csproj">
+      <Project>{96304fe2-6352-4486-89fb-0cb4f020bf66}</Project>
+      <Name>NetTopologySuite.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharpMapX\NetTopologySuite\NetTopologySuite.Encodings\NetTopologySuite.Encodings.csproj">
+      <Project>{02cb4412-3cdb-4506-b48a-0d43c423e8cb}</Project>
+      <Name>NetTopologySuite.Encodings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetTopologySuite.IO.GeoTools\NetTopologySuite.IO.GeoTools.csproj">
+      <Project>{9945bfae-1bc2-4d50-b60c-641963fe2d0f}</Project>
+      <Name>NetTopologySuite.IO.GeoTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetTopologySuite.IO.Pcl\NetTopologySuite.IO.Pcl.csproj">
+      <Project>{175ebd26-c952-48e1-b718-9e9e4d6e0912}</Project>
+      <Name>NetTopologySuite.IO.Pcl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharpMapX\NetTopologySuite\NetTopologySuite.Pcl\NetTopologySuite.Pcl.csproj">
+      <Project>{c6f14605-0da6-420a-8de7-18b57e9a9c99}</Project>
+      <Name>NetTopologySuite.Pcl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharpMapX\Portable.Net\Portable.Net.csproj">
+      <Project>{d37b8975-a4a3-4d3a-b7da-9bd1c792c4c5}</Project>
+      <Name>Portable.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SharpMapX\Portable\Portable.csproj">
+      <Project>{83c6bf62-8939-42c8-adee-4b782b4f3cc5}</Project>
+      <Name>Portable</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SampleData\Strade.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\Strade.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\Strade.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\tnp_arc.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\tnp_arc.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\tnp_arc.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\Zone_ISTAT.dbf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\Zone_ISTAT.shp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SampleData\Zone_ISTAT.shx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
