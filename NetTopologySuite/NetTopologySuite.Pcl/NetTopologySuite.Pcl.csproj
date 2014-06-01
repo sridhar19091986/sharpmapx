@@ -39,13 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\..\Portable\Portable.csproj">
+      <Project>{83c6bf62-8939-42c8-adee-4b782b4f3cc5}</Project>
+      <Name>Portable</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GeoAPI.Pcl\GeoAPI.Pcl.csproj">
       <Project>{92b3b84b-50f1-4147-8b97-d93b90fa5514}</Project>
       <Name>GeoAPI.Pcl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetTopologySuite.Encodings\NetTopologySuite.Encodings.csproj">
-      <Project>{02cb4412-3cdb-4506-b48a-0d43c423e8cb}</Project>
-      <Name>NetTopologySuite.Encodings</Name>
     </ProjectReference>
     <ProjectReference Include="..\PowerCollections.Pcl\PowerCollections.Pcl.csproj">
       <Project>{4fe07049-9f3a-42a4-8105-b1a72fe15c67}</Project>
@@ -69,6 +69,89 @@
     </Compile>
     <Compile Include="Features\IFeature.cs" />
     <Compile Include="IO\NtsDataContractSerializer.cs" />
+    <Compile Include="NetTopologySuite.Data\CustomConverterBase.cs" />
+    <Compile Include="NetTopologySuite.Data\Guard.cs" />
+    <Compile Include="NetTopologySuite.Data\ICustomConverter.cs" />
+    <Compile Include="NetTopologySuite.Data\IMemoryRecordSet.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\DecimalPropertyInfo.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\PropertyInfo.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\Record.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\Schema.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\StringPropertyInfo.cs" />
+    <Compile Include="NetTopologySuite.Data\InternalImpl\Value.cs" />
+    <Compile Include="NetTopologySuite.Data\IPropertyInfo.cs" />
+    <Compile Include="NetTopologySuite.Data\IPropertyInfoFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\IRecord.cs" />
+    <Compile Include="NetTopologySuite.Data\IRecordFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\IRecordSource.cs" />
+    <Compile Include="NetTopologySuite.Data\ISchema.cs" />
+    <Compile Include="NetTopologySuite.Data\ISchemaFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\IValue.cs" />
+    <Compile Include="NetTopologySuite.Data\IValueFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\MemoryRecordSet.cs" />
+    <Compile Include="NetTopologySuite.Data\ModuleAttributes.cs" />
+    <Compile Include="NetTopologySuite.Data\PropertyInfoFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\RecordFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\SchemaFactory.cs" />
+    <Compile Include="NetTopologySuite.Data\SchemaMismatchException.cs" />
+    <Compile Include="NetTopologySuite.Data\ValueFactory.cs" />
+    <Compile Include="NetTopologySuite.Encodings\ASCIIEncoding.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP10029.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1250.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1251.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1252.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1253.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1254.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP1257.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP437.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP737.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP850.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP852.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP857.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP860.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP861.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP863.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP865.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP866.cs" />
+    <Compile Include="NetTopologySuite.Encodings\CP874.cs" />
+    <Compile Include="NetTopologySuite.Encodings\EncodingEx.cs" />
+    <Compile Include="NetTopologySuite.Encodings\EncodingRegistry.cs" />
+    <Compile Include="NetTopologySuite.Encodings\IEncodingRegistry.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\BigEndianBinaryReader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\BigEndianBinaryWriter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\DbaseFieldDescriptor.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\DbaseFileHeader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\DbaseFileReader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\DbaseFileReader.FullFat.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\DbaseFileWriter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Dbase\RowStructure.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\GeoToolsStreamTokenizer.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\GeometryInstantiationErrorHandling.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\MultiLineHandler.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\MultiPointHandler.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\PointHandler.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\PolygonHandler.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\ProbeLinearRing.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Handlers\ShapeHandler.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\IoManager.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\Shapefile.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapeFileConstants.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileDataReader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileDataReader.FullFat.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileDataWriter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileException.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileHeader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileReader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileReader.FullFat.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapefileWriter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapeGeometryType.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapeReader.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\ShapeWriter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\SLShapeFileDataEnumerator.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\StringToGeometryConverter.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\TokenType.cs" />
+    <Compile Include="NetTopologySuite.IO.GeoTools\WktStreamTokenizer.cs" />
+    <Compile Include="NetTopologySuite.IO\Geometries\CoordinateBuffer.cs" />
     <Compile Include="Noding\InteriorIntersectionFinderAdder.cs">
     </Compile>
     <Compile Include="Simplify\VWLineSimplifier.cs">
@@ -905,6 +988,10 @@
     </Content>
     <Resource Include="Precision\DocFiles\minClearance.png">
     </Resource>
+    <Content Include="NetTopologySuite.Data\readme.txt" />
+    <Content Include="NetTopologySuite.Encodings\readme.txt" />
+    <Content Include="NetTopologySuite.IO.GeoTools\readme.txt" />
+    <Content Include="NetTopologySuite.IO\readme.txt" />
     <Content Include="Precision\PrecisionSummary.xml">
     </Content>
     <Content Include="ReadMe.txt">
@@ -914,6 +1001,7 @@
     <Content Include="Utilities\RToolsUtil\Rtools.Util.License.txt">
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

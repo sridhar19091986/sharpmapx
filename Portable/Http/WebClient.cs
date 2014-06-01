@@ -24,9 +24,8 @@ namespace Portable.Http
     }
 
     public delegate void DownloadStringCompletedEventHandler(object sender, DownloadStringCompletedEventArgs e);
-
-
-    public class WebClient
+    
+    public class WebClient: IWebClient
     {
         public class WebDownloadResult
         {

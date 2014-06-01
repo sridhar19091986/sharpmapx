@@ -1,0 +1,1 @@
+﻿This folder was originally a separated project called NetTopologySuite.Encodings

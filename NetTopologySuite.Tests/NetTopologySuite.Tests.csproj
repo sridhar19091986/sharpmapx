@@ -50,22 +50,6 @@
       <Project>{92b3b84b-50f1-4147-8b97-d93b90fa5514}</Project>
       <Name>GeoAPI.Pcl</Name>
     </ProjectReference>
-    <ProjectReference Include="..\NetTopologySuite.Data\NetTopologySuite.Data.csproj">
-      <Project>{96304fe2-6352-4486-89fb-0cb4f020bf66}</Project>
-      <Name>NetTopologySuite.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\SharpMapX\NetTopologySuite\NetTopologySuite.Encodings\NetTopologySuite.Encodings.csproj">
-      <Project>{02cb4412-3cdb-4506-b48a-0d43c423e8cb}</Project>
-      <Name>NetTopologySuite.Encodings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetTopologySuite.IO.GeoTools\NetTopologySuite.IO.GeoTools.csproj">
-      <Project>{9945bfae-1bc2-4d50-b60c-641963fe2d0f}</Project>
-      <Name>NetTopologySuite.IO.GeoTools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NetTopologySuite.IO.Pcl\NetTopologySuite.IO.Pcl.csproj">
-      <Project>{175ebd26-c952-48e1-b718-9e9e4d6e0912}</Project>
-      <Name>NetTopologySuite.IO.Pcl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\SharpMapX\NetTopologySuite\NetTopologySuite.Pcl\NetTopologySuite.Pcl.csproj">
       <Project>{c6f14605-0da6-420a-8de7-18b57e9a9c99}</Project>
       <Name>NetTopologySuite.Pcl</Name>

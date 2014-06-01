@@ -36,6 +36,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Http\IWebClient.cs" />
     <Compile Include="IO\ApplicationException.cs" />
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="DBNull.cs" />
