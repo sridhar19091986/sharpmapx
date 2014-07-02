@@ -1,8 +1,6 @@
-﻿//==============================================================================
-// WFS provider by Peter Robineau (peter.robineau@gmx.at)
+﻿// WFS provider by Peter Robineau (peter.robineau@gmx.at)
 // Modified by Fabrizio Vita (fabrizio.vita@itacasoft.it), 10-03-2010
 // This file can be redistributed and/or modified under the terms of the GNU Lesser General Public License.
-//===============================================================================
 
 using System;
 using System.Globalization;
