@@ -30,3 +30,4 @@ Cratos.sln
 _downloads/
 */bin/
 */obj/
+_backup/*
