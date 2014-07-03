@@ -1,4 +1,8 @@
-﻿using SharpMap;
+﻿//==============================================================================
+// This file can be redistributed and/or modified under the terms of the GNU Lesser General Public License.
+//===============================================================================
+
+using SharpMap;
 using SharpMap.Entities;
 using SharpMap.Geometries;
 using SharpMap.Utilities;

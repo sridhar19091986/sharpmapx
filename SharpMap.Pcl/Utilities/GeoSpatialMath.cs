@@ -22,7 +22,7 @@ namespace SharpMap.Utilities
     /// <summary>
     /// A
     /// </summary>
-    public static class GeoSpatialMath
+    public static partial class GeoSpatialMath
     {
         /// <summary>
         /// Conversion factor degrees to radians
