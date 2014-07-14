@@ -11,6 +11,15 @@ namespace SharpMap.Entities
     public class ServiceExceptionReport
     {
         /// <summary>
+        /// Code of the exception.
+        /// </summary>
+        public string Code
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
         /// Message of the exception.
         /// </summary>
         public string ServiceException

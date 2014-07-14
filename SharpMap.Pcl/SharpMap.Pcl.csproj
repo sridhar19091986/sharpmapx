@@ -51,6 +51,7 @@
     <Compile Include="Converters\WellKnownText\WKTStreamTokenizer.cs" />
     <Compile Include="CoordinateSystems\Trasformations\GeometryTransform.cs" />
     <Compile Include="CoordinateSystems\Trasformations\GeometryTransformDotSpatial.cs" />
+    <Compile Include="Entities\ServiceExceptionReportEventArgs.cs" />
     <Compile Include="Entities\INamedEntity.cs" />
     <Compile Include="Entities\BaseGISProjectInfo.cs" />
     <Compile Include="Entities\Converter.cs" />
@@ -68,6 +69,7 @@
     <Compile Include="Entities\LayerField.cs" />
     <Compile Include="Entities\LegendIcon.cs" />
     <Compile Include="Entities\ServiceExceptionReport.cs" />
+    <Compile Include="Entities\StringEventArgs.cs" />
     <Compile Include="Geometries\GeometriesExtensions.cs" />
     <Compile Include="Geometries\ScreenPoint.cs" />
     <Compile Include="Geometries\ScreenPointF.cs" />

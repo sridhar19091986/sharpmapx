@@ -53,6 +53,26 @@ namespace SharpMap
         }
 
         /// <summary>
+        /// Check if the given xml contains an object of a type.
+        /// </summary>
+        /// <param name="xml">xml to be searched</param>
+        /// <param name="tipo">Type to be checked.</param>
+        /// <returns>True if the type is found.</returns>
+        public static bool CheckObjectType(string xml, string tipo)
+        {
+            string str = GetObjectTypeAsString(xml);
+            if (tipo.ToLower().Contains(str.ToLower()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        /// <summary>
         /// Serializes an object.
         /// </summary>
         /// <param name="pObject">Object to be serialized.</param>

@@ -60,8 +60,7 @@ namespace SharpMap.Layers
         public LayerWms(WmsProjectInfo wmsInfo)
         {
             wmsService = new WmsService(wmsInfo.GetCapabilities.Url);
-            wmsService.OnGetCapabilitiesCompleted += wmsService_OnGetCapabilitiesCompleted;
-            wmsService.OnGetFeatureInfoCompleted += wmsService_OnGetFeatureInfoCompleted;
+            InitializeEvents(); 
             Initialize(wmsInfo);
         }
 
@@ -74,7 +73,7 @@ namespace SharpMap.Layers
             Initialize(info);
 
             wmsService = new WmsService(url);
-            wmsService.OnGetFeatureInfoCompleted += wmsService_OnGetFeatureInfoCompleted;
+            InitializeEvents();
             setupDone = true;
         }
 
@@ -106,10 +105,16 @@ namespace SharpMap.Layers
         {
             if (setupDone) return;
             wmsService = new WmsService(url);
-            wmsService.OnGetCapabilitiesCompleted += wmsService_OnGetCapabilitiesCompleted;
-            wmsService.OnGetFeatureInfoCompleted += wmsService_OnGetFeatureInfoCompleted;
+            InitializeEvents();
             wmsService.GetCapabilities();
             setupDone = true;
+        }
+
+        private void InitializeEvents()
+        {
+            wmsService.OnGetCapabilitiesCompleted += wmsService_OnGetCapabilitiesCompleted;
+            wmsService.OnGetFeatureInfoCompleted += wmsService_OnGetFeatureInfoCompleted;
+            wmsService.OnGetError += wmsService_OnGetError;
         }
 
         protected virtual void wmsService_OnGetFeatureInfoCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -129,6 +134,12 @@ namespace SharpMap.Layers
             }
         }
 
+        protected virtual void wmsService_OnGetError(object sender, ServiceExceptionReportEventArgs e)
+        {
+            if (OnGetError != null)
+                OnGetError(sender, e);
+        }
+
         public LayerWms()
         {
 
@@ -144,6 +155,11 @@ namespace SharpMap.Layers
         /// Event thrown when a getfeature info is completed.
         /// </summary>
         public event EventHandler<FeaturesEventArgs> OnGetFeatureInfoCompleted;
+
+        /// <summary>
+        /// Event thrown when an error has occured during a select operation.
+        /// </summary>
+        public event EventHandler<ServiceExceptionReportEventArgs> OnGetError;
 
         public List<WmsLayerInfo> Layers { get; private set; }
 
@@ -277,7 +293,15 @@ namespace SharpMap.Layers
             /// </summary>
             public event EventHandler<DownloadStringCompletedEventArgs> OnGetFeatureInfoCompleted;
 
+            /// <summary>
+            /// Event thrown when a getcapabilities request is completed
+            /// </summary>
             public event EventHandler<WmsProjectEventArgs> OnGetCapabilitiesCompleted;
+
+            /// <summary>
+            /// Event thrown when an error has occured during a select operation.
+            /// </summary>
+            public event EventHandler<ServiceExceptionReportEventArgs> OnGetError;
 
             public string ServiceUrl
             {
@@ -403,7 +427,13 @@ namespace SharpMap.Layers
             {
                 try
                 {
-                    if (WmsUtils.CheckException(e.Result)) return;
+                    var serviceEx = WmsUtils.CheckException(e.Result);
+                    if (serviceEx != null)
+                    {
+                        if (OnGetError != null)
+                            OnGetError(sender, new ServiceExceptionReportEventArgs(serviceEx));
+                        return;
+                    }
 
                     var parsed = WmsParser.Read(e.Result);
 
@@ -521,7 +551,13 @@ namespace SharpMap.Layers
             {
                 try
                 {
-                    if (WmsUtils.CheckException(e.Result)) return;
+                    var serviceEx = WmsUtils.CheckException(e.Result);
+                    if (serviceEx != null)
+                    {
+                        if (OnGetError != null)
+                            OnGetError(sender, new ServiceExceptionReportEventArgs(serviceEx));
+                        return;
+                    }
 
                     if (OnGetFeatureInfoCompleted != null)
                         OnGetFeatureInfoCompleted(sender, e);
